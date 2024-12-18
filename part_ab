@@ -1,0 +1,2891 @@
+ LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        15/12/2024     22:43     3703570432 ext4.vhdx
+PS C:\Users\bade\Desktop\interfaceweb> wsl --list
+Distributions du Sous-système Windows pour Linux :
+nvidia (par défaut)
+docker-desktop
+Ubuntu-22.04
+peter
+mon-ubuntu-22.04
+interfaceweb
+PS C:\Users\bade\Desktop\interfaceweb> wsl -d interfaceweb
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.167.4-microsoft-standard-WSL2 x86_64)
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+ System information as of Mon Dec 16 20:18:55 CET 2024
+  System load:  0.0                 Processes:             59
+  Usage of /:   0.3% of 1006.85GB   Users logged in:       0
+  Memory usage: 3%                  IPv4 address for eth0: 172.20.219.71       
+  Swap usage:   0%
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s  
+   just raised the bar for easy, resilient and secure K8s cluster deployment.  
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+This message is shown once a day. To disable it please create the
+/root/.hushlogin file.
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade/Desktop/interfaceweb# cd ~
+root@DESKTOP-7BUD34G:~# ls -l
+total 4
+drwxr-xr-x 6 root root 4096 Dec 15 22:15 eurosmillions
+root@DESKTOP-7BUD34G:~# cd eurosmillions/
+root@DESKTOP-7BUD34G:~/eurosmillions# npx create-react-app .
+The directory . contains files that could conflict:
+  node_modules/
+  package-lock.json
+  package.json
+  public/
+  src/
+  tailwind.config.js
+Either try using a new directory name, or remove the files listed above.
+root@DESKTOP-7BUD34G:~/eurosmillions# npm install react-icons lucide-react tailwindcss @tailwindcss/forms
+added 3 packages, and audited 2197 packages in 25s
+155 packages are looking for funding
+  run npm fund for details
+163 vulnerabilities (1 low, 121 moderate, 38 high, 3 critical)
+To address issues that do not require attention, run:
+  npm audit fix
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+Run npm audit for details.
+root@DESKTOP-7BUD34G:~/eurosmillions# ls tailwind.config.js
+tailwind.config.js
+root@DESKTOP-7BUD34G:~/eurosmillions# module.exports = {
+  content: [
+    "./src//*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+module.exports: command not found
+content:: command not found
+-bash: ./src//*.{js,jsx,ts,tsx},: No such file or directory
+],: command not found
+Command 'theme:' not found, did you mean:
+  command 'theme' from deb discount (2.2.7-2)
+Try: apt install <deb name>
+Command 'extend:' not found, did you mean:
+  command 'extend' from deb survex (1.4.1-1)
+Try: apt install <deb name>
+},: command not found
+plugins:: command not found
+-bash: syntax error near unexpected token '@tailwindcss/forms''
+],: command not found
+-bash: syntax error near unexpected token }'
+root@DESKTOP-7BUD34G:~/eurosmillions# echo '@tailwind base;
+> ^C
+root@DESKTOP-7BUD34G:~/eurosmillions#EditJe vois l'erreur. Nous devons créer/modifier le fichier tailwind.config.js correctement. Voici les commandes correctes :
+bashCopy# Créer/modifier le fichier tailwind.config.js
+cat > tailwind.config.js << 'EOL'
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+EOL
+
+# Mettre à jour index.css
+cat > src/index.css << 'EOL'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+EOL
+
+# Vérifier que les fichiers ont été créés correctement
+cat tailwind.config.js
+cat src/index.css
+Ensuite, nous pourrons créer le fichier App.js avec notre interface. Voulez-vous que nous procédions avec ces commandes ? CopyRetryClaude does not have the ability to run the code it generates yet.Compiled successfully!
+
+You can now view eurosmillions in the browser.
+
+  Local:            http://localhost:3000/
+  On Your Network:  http://172.20.219.71:3000/
+
+Note that the development builpastedA
+EditTrès bien, maintenant nous allons créer le fichier App.js avec notre interface. Voici les étapes :
+
+D'abord, sauvegardons le contenu actuel de App.js au cas où :
+
+bashCopymv src/App.js src/App.js.backup
+
+Créons le nouveau App.js :
+
+bashCopycat > src/App.js << 'EOL'
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  // Composant HomePage
+  const HomePage = () => {
+    return (
+      <div className="container mx-auto p-8">
+        <div className="grid grid-cols-3 gap-8 mb-8">
+          {/* ID-Tirage Unique */}
+          <div 
+            onClick={() => setActivePage('id-unique')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">Unique</p>
+            </div>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div 
+            onClick={() => setActivePage('id-multiple')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">multiple</p>
+            </div>
+          </div>
+
+          {/* Tableau */}
+          <div 
+            onClick={() => setActivePage('tableau')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Tableau</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">id tirage</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-8">
+          {/* Situations */}
+          <div className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40">
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">A</p>
+            </div>
+          </div>
+
+          <div className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40">
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">A</p>
+            </div>
+          </div>
+
+          <div className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40">
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">B</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-blue-900">
+      {/* Navigation */}
+      <nav className="bg-blue-900 shadow-lg border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-8">
+              <button 
+                onClick={() => setActivePage('home')}
+                className="text-white hover:text-blue-200 transition-colors"
+              >
+                Accueil
+              </button>
+
+              {/* ID-Tirage */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Unique
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Multiple
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Tableau */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowTableauMenu(true)}
+                  onMouseLeave={() => setShowTableauMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  Tableau
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showTableauMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-64 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowTableauMenu(true)}
+                    onMouseLeave={() => setShowTableauMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Tous les résultats EuroMillions
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Simulation */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  Simulation
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation A
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation B
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation C
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <main className="flex-grow">
+        <HomePage />
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-900 py-4 border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">© 2024 Gerard Akueson</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+EOL
+
+Redémarrez le serveur de développement :
+
+bashCopynpm start
+L'application devrait maintenant afficher l'interface complète avec la navigation et les cartes. Voulez-vous que nous procédions avec ces étapes ? CopyRetryClaude does not have the ability to run the code it generates yet.Compiled successfully!
+
+You can now view eurosmillions in the browser.
+
+  Local:            http://localhost:3000/
+  On Your Network:  http://172.20.219.71:3000/
+
+Note that the development builpastedA
+EditJe vois qu'il y a un problème avec la commande. Essayons une approche différente.
+Créons d'abord un fichier temporaire avec le code, puis nous le copierons au bon endroit :
+bashCopy# Créer un dossier temporaire
+mkdir -p ~/temp
+
+# Créer App.js dans le dossier temp
+nano ~/temp/App.js
+Dans l'éditeur nano, collez le code complet. Une fois terminé :
+bashCopy# Copier le fichier vers le bon emplacement
+cp ~/temp/App.js ~/eurosmillions/src/App.js
+
+# Redémarrer le serveur de développement
+cd ~/eurosmillions
+npm start
+Voulez-vous que je vous fournisse le code à coller dans l'éditeur nano ? CopyRetryClaude does not have the ability to run the code it generates yet.AStarting the development server...
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:69:19)
+    at Object.createHash (node:crypto:133:10)
+    at module.exports (/root/eurosmillions/node_modules/webpack/lib/util/createHash.js:90:53)
+    at NormalModule._initBuildHash (/root/eurosmillions/node_modules/webpack/lib/NormalModule.js:401:16)
+    at handleParseError (/root/eurosmillions/node_modules/webpack/lib/NormalModule.js:449:10)
+    at /root/eurosmillions/node_modules/webpack/lib/NormalModule.js:481:5
+    at /root/eurosmillions/node_modules/webpack/lib/NormalModule.js:342:12
+    at /root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:373:3
+    at iterateNormalLoaders (/root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:214:10)
+    at iterateNormalLoaders (/root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:221:10)
+    at /root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:236:3
+    at runSyncOrAsync (/root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:130:11)
+    at iterateNormalLoaders (/root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:232:2)
+    at Array.<anonymous> (/root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:205:4)
+    at Storage.finished (/root/eurosmillions/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:55:16)
+    at /root/eurosmillions/node_modules/enhanced-resolve/lib/CachedInputFileSystem.js:91:9
+/root/eurosmillions/node_modules/react-scripts/scripts/start.js:19
+  throw err;
+  ^
+Error: error:0308010C:digital envelope routines::unsupported
+    at new Hash (node:internal/crypto/hash:69:19)
+    at Object.createHash (node:crypto:133:10)
+    at module.exports (/root/eurosmillions/node_modules/webpack/lib/util/createHash.js:90:53)
+    at NormalModule._initBuildHash (/root/eurosmillions/node_modules/webpack/lib/NormalModule.js:401:16)
+    at /root/eurosmillions/node_modules/webpack/lib/NormalModule.js:433:10
+    at /root/eurosmillions/node_modules/webpack/lib/NormalModule.js:308:13
+    at /root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:367:11
+    at /root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:233:18
+    at context.callback (/root/eurosmillions/node_modules/loader-runner/lib/LoaderRunner.js:111:13)
+    at /root/eurosmillions/node_modules/babel-loader/lib/index.js:51:103 {
+  opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+  library: 'digital envelope routines',
+  reason: 'unsupported',
+  code: 'ERR_OSSL_EVP_UNSUPPORTED'
+}
+Node.js v18.20.5
+root@DESKTOP-7BUD34G:~/eurosmillions#EditCette erreur est liée à la version de Node.js et OpenSSL. Pour résoudre ce problème, nous devons définir une variable d'environnement avant de démarrer le serveur.
+Essayez ces commandes :
+bashCopy# Définir la variable d'environnement
+export NODE_OPTIONS=--openssl-legacy-provider
+
+# Redémarrer le serveur de développement
+npm start
+Ou nous pouvons modifier le script de démarrage dans package.json. Pour cela :
+bashCopy# Ouvrir package.json
+nano package.json
+
+# Modifier la ligne "start" pour qu'elle ressemble à :
+"scripts": {
+  "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+  ...
+}
+Voulez-vous que nous essayions l'une de ces solutions ? CopyRetryClaude does not have the ability to run the code it generates yet.AFailed to compile.
+./src/index.js
+Module not found: Can't resolve './App' in '/root/eurosmillions/src'EditCette erreur indique que le fichier App.js n'est pas trouvé dans le dossier src. Vérifions et créons le fichier :
+
+D'abord, vérifions le contenu du dossier src :
+
+bashCopyls -la src/
+
+Si App.js n'existe pas ou s'il y a eu un problème avec sa création précédente, créons-le :
+
+bashCopy# Dans le dossier eurosmillions
+cd ~/eurosmillions
+
+# Créer App.js
+cat > src/App.js << 'EOL'
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  // Composant HomePage
+  const HomePage = () => {
+    return (
+      <div className="container mx-auto p-8">
+        <div className="grid grid-cols-3 gap-8 mb-8">
+          {/* ID-Tirage Unique */}
+          <div 
+            onClick={() => setActivePage('id-unique')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">Unique</p>
+            </div>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div 
+            onClick={() => setActivePage('id-multiple')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">multiple</p>
+            </div>
+          </div>
+
+          {/* Tableau */}
+          <div 
+            onClick={() => setActivePage('tableau')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Tableau</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">id tirage</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-8">
+          <div 
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">A</p>
+            </div>
+          </div>
+
+          <div 
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">A</p>
+            </div>
+          </div>
+
+          <div 
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">B</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-blue-900">
+      {/* Navigation */}
+      <nav className="bg-blue-900 shadow-lg border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-8">
+              <button 
+                onClick={() => setActivePage('home')}
+                className="text-white hover:text-blue-200 transition-colors"
+              >
+                Accueil
+              </button>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <button
+                      onClick={() => setActivePage('id-unique')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Unique
+                    </button>
+                    <button
+                      onClick={() => setActivePage('id-multiple')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Multiple
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowTableauMenu(true)}
+                  onMouseLeave={() => setShowTableauMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  Tableau
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showTableauMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-64 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowTableauMenu(true)}
+                    onMouseLeave={() => setShowTableauMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Tous les résultats EuroMillions
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  Simulation
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation A
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation B
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation C
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <main className="flex-grow">
+        <HomePage />
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-900 py-4 border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">© 2024 Gerard Akueson</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+EOL
+
+Vérifions que le fichier a été créé correctement :
+
+bashCopyls -l src/App.js
+
+Redémarrons le serveur avec la variable d'environnement :
+
+bashCopyexport NODE_OPTIONS=--openssl-legacy-provider && npm start
+Voulez-vous que nous procédions avec ces étapes ? CopyRetryClaude does not have the ability to run the code it generates yet.AFailed to compile.
+./src/index.js
+Module not found: Can't resolve './App' in '/root/eurosmillions/src'
+ls -la src/
+^C
+root@DESKTOP-7BUD34G:~/eurosmillions# ls -la src/
+total 40
+drwxr-xr-x 2 root root 4096 Dec 16 20:26 .
+drwxr-xr-x 6 root root 4096 Dec 15 22:15 ..
+-rw-r--r-- 1 root root  564 Dec 15 21:57 App.css
+-rw-r--r-- 1 root root 2467 Dec 15 22:40 App.js.backup
+-rw-r--r-- 1 root root  246 Dec 15 21:57 App.test.js
+-rw-r--r-- 1 root root   59 Dec 16 20:24 index.css
+-rw-r--r-- 1 root root  535 Dec 15 21:57 index.js
+-rw-r--r-- 1 root root 2632 Dec 15 21:57 logo.svg
+-rw-r--r-- 1 root root  362 Dec 15 21:57 reportWebVitals.js
+-rw-r--r-- 1 root root  241 Dec 15 21:57 setupTests.js
+root@DESKTOP-7BUD34G:~/eurosmillions#EditJe vois que App.js n'est pas dans le dossier src/, mais nous avons App.js.backup. Créons le fichier App.js à partir de zéro :
+bashCopy# Créer le fichier App.js
+cat > src/App.js << 'EOL'
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+import './App.css';
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  // Composant HomePage
+  const HomePage = () => {
+    return (
+      <div className="container mx-auto p-8">
+        <div className="grid grid-cols-3 gap-8 mb-8">
+          {/* ID-Tirage Unique */}
+          <div 
+            onClick={() => setActivePage('id-unique')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">Unique</p>
+            </div>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div 
+            onClick={() => setActivePage('id-multiple')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">multiple</p>
+            </div>
+          </div>
+
+          {/* Tableau */}
+          <div 
+            onClick={() => setActivePage('tableau')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Tableau</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">id tirage</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-8">
+          <div className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40">
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">A</p>
+            </div>
+          </div>
+
+          <div className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40">
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">A</p>
+            </div>
+          </div>
+
+          <div className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40">
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Situation</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">B</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-blue-900">
+      <nav className="bg-blue-900 shadow-lg border-b border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-8">
+              <button 
+                onClick={() => setActivePage('home')}
+                className="text-white hover:text-blue-200 transition-colors"
+              >
+                Accueil
+              </button>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Unique
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Multiple
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowTableauMenu(true)}
+                  onMouseLeave={() => setShowTableauMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  Tableau
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showTableauMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-64 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowTableauMenu(true)}
+                    onMouseLeave={() => setShowTableauMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Tous les résultats EuroMillions
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="text-white hover:text-blue-200 transition-colors flex items-center"
+                >
+                  Simulation
+                  <ChevronDown className="ml-1" size={16} />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation A
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation B
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation C
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main className="flex-grow">
+        <HomePage />
+      </main>
+
+      <footer className="bg-blue-900 py-4 border-t border-white/10">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">© 2024 Gerard Akueson</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+EOL
+
+# Redémarrer le serveur
+export NODE_OPTIONS=--openssl-legacy-provider && npm start
+Cette commande va :
+
+Créer un nouveau App.js avec le code complet
+Inclure l'import du fichier CSS
+Redémarrer le serveur avec la configuration OpenSSL correcte
+ CopyRetryClaude does not have the ability to run the code it generates yet.Acomment je testes ma pageEditPour tester votre page, vous avez plusieurs options :
+
+Depuis votre navigateur, accédez à l'une des URLs affichées dans le terminal :
+
+CopyLocal:            http://localhost:3000/
+On Your Network:  http://172.20.219.71:3000/
+
+Vous pouvez utiliser :
+
+L'URL locale (localhost:3000) si vous accédez depuis la même machine
+L'URL réseau (172.20.219.71:3000) si vous accédez depuis un autre appareil sur le même réseau
+
+
+
+La page devrait afficher :
+
+La barre de navigation avec tous les onglets
+Les cartes sur la page d'accueil
+Le pied de page avec le copyright
+
+Les fonctionnalités testables sont :
+
+Les menus déroulants au survol
+La navigation via les onglets
+Les effets de survol sur les cartes
+
+Voulez-vous que je vous guide dans le test d'une fonctionnalité particulière ? CopyRetryClaude does not have the ability to run the code it generates yet.Ail n y' a que le coté html qui fonctionne puisque le style css n'ai pas prise en charge. corrige moi l'erreurEditNous devons configurer correctement Tailwind CSS. Il y a deux choses à faire :
+
+Mettre à jour le script de build dans package.json :
+
+bashCopynano package.json
+Et ajoutez le script suivant dans la section "scripts" :
+jsonCopy{
+  "scripts": {
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:css": "tailwindcss build -i src/index.css -o src/App.css"
+  }
+}
+
+Créer la configuration PostCSS :
+
+bashCopycat > postcss.config.js << 'EOL'
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+EOL
+
+Mettre à jour le fichier tailwind.config.js :
+
+bashCopycat > tailwind.config.js << 'EOL'
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/forms')],
+}
+EOL
+
+Puis, exécutez :
+
+bashCopynpm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npm run build:css
+npm start
+Voulez-vous que nous procédions avec ces étapes ? CopyRetryClaude does not have the ability to run the code it generates yet.Avoici le script que j'ai trouvé : "  GNU nano 6.2                                             package.json                                                       {
+  "name": "eurosmillions",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "cra-template": "1.2.0",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-scripts": "^3.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16"
+  }
+}"EditD'après ce que je vois, il faut mettre à jour la section "scripts" de votre package.json. Modifiez-la comme suit :
+bashCopynano package.json
+Dans la section "scripts", remplacez le contenu actuel par :
+jsonCopy"scripts": {
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:css": "tailwindcss build -i src/index.css -o src/App.css"
+}
+Ensuite, assurez-vous d'avoir :
+
+Le fichier postcss.config.js :
+
+bashCopycat > postcss.config.js << 'EOL'
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+EOL
+
+Puis redémarrez l'application :
+
+bashCopynpm run build:css
+npm start
+Voulez-vous que nous procédions avec ces étapes ? CopyRetryClaude does not have the ability to run the code it generates yet.Aredonne moi le script du fichier au completEditVoici le contenu complet du fichier package.json :
+jsonCopy{
+  "name": "eurosmillions",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "cra-template": "1.2.0",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-scripts": "^3.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:css": "tailwindcss build -i src/index.css -o src/App.css"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16"
+  }
+}
+Voulez-vous que je vous guide pour l'application de ces changements ? CopyRetryClaude does not have the ability to run the code it generates yet.Aoui, explique avec des chema mermaid et umlEditJe vais créer des diagrammes pour expliquer la structure et le processus.
+Structure du projetClick to open diagram
+Séquence de configurationClick to open diagram
+Étapes de mise en œuvre :
+
+Mettre à jour package.json :
+
+bashCopynano package.json
+# Coller le contenu complet du package.json
+
+Créer tailwind.config.js :
+
+bashCopycat > tailwind.config.js << 'EOL'
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/forms')],
+}
+EOL
+
+Créer postcss.config.js :
+
+bashCopycat > postcss.config.js << 'EOL'
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+EOL
+
+Construire et démarrer :
+
+bashCopynpm run build:css
+npm start
+Voulez-vous que je vous guide à travers l'une de ces étapes en particulier ? CopyRetryClaude does not have the ability to run the code it generates yet.Areprend tout au depart en crayons une instance wsl avec ubuntu 22.04 que tu va nommé pageweb et dans laquelle tu va tous nous expliquer du debut a la fin pour mettre en place notre page d'accueilEditJe vais vous guider pas à pas pour créer une nouvelle instance WSL et mettre en place notre page d'accueil.
+Processus de configurationClick to open diagram
+Commençons par les étapes dans l'ordre :
+
+Création de l'instance WSL (à exécuter dans PowerShell) :
+
+powershellCopywsl --install -d Ubuntu-22.04 --web-download
+wsl --set-version Ubuntu-22.04 2
+wsl --import pageweb C:\Users\[votre-nom]\Desktop\pageweb Ubuntu-22.04
+
+Configuration initiale (dans l'instance WSL) :
+
+bashCopysudo apt update && sudo apt upgrade -y
+sudo apt install -y curl git build-essential
+
+Installation de Node.js :
+
+bashCopycurl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install -y nodejs
+Voulez-vous que nous commencions par ces premières étapes ? CopyRetryClaude does not have the ability to run the code it generates yet.Aj'aime beaucoup ton approche et des explication, continue par l'étapes suivante pour l'instant, nous commencerons plus tard. je veux d'abord savoir tout ce que nous allons faire.EditPlan complet d'implémentationClick to open diagram
+Détaillons chaque phase :
+
+Phase 1 : Préparation Environnement
+
+Création instance WSL Ubuntu 22.04 "pageweb"
+Installation des packages système
+Configuration Node.js et npm
+Installation des outils de développement
+
+
+Phase 2 : Configuration Projet
+
+Création projet React avec create-react-app
+Installation et configuration Tailwind CSS
+Configuration des fichiers de build
+Mise en place structure de base
+
+
+Phase 3 : Structure Interface
+
+Création des composants de navigation
+Mise en place système de routage
+Configuration des styles globaux
+Structure des composants réutilisables
+
+
+Phase 4 : Implémentation Pages
+
+Page d'accueil avec grille de cartes
+Formulaires ID-Tirage (Unique et Multiple)
+Page Tableau avec fonctionnalités de recherche
+Pages de simulation
+
+
+Phase 5 : Tests et Optimisation
+
+Vérification navigation
+Tests des formulaires
+Optimisation des styles
+Tests de performance
+
+
+
+Fichiers clés à créer :
+Structure des fichiersClick to open diagram
+Voulez-vous :
+
+Plus de détails sur une phase particulière ?
+Voir le contenu spécifique d'un des fichiers ?
+Explorer une partie spécifique de l'implémentation ?
+
+autre information important :
+"
+Architecture technique et utilisation des ressources
+Preview
+Code
+
+graph TD
+    subgraph "Hardware"
+        CPU[CPU Ryzen 9 5900X<br/>12 cores/24 threads] 
+        GPU[RTX 3080 10GB<br/>CUDA Cores]
+        RAM[32GB DDR4 3600MHz]
+        NVME[NVMe SSD 1TB<br/>PCIe 4.0]
+    end
+
+    subgraph "Docker Environment"
+        DC[Docker Compose]
+        PY[Python Container<br/>+ CUDA Toolkit]
+        DB[MariaDB Container]
+        WEB[Frontend Container]
+    end
+
+    subgraph "Resource Allocation"
+        GPU --> |CUDA| PY
+        CPU --> |Multi-threading| PY
+        CPU --> |Processing| DB
+        RAM --> |Memory Pool| DC
+        NVME --> |Storage| DB
+    end
+
+    DC --> PY
+    DC --> DB
+    DC --> WEB
+
+graph TD
+    root["/euro-millions"] --> docker[".docker/"]
+    root --> frontend["frontend/"]
+    root --> backend["backend/"]
+    root --> docs["docs/"]
+    root --> tests["tests/"]
+    root --> config["config/"]
+    root --> scripts["scripts/"]
+
+    docker --> df1["dockerfile.python"]
+    docker --> df2["dockerfile.frontend"]
+    
+    frontend --> src1["src/"]
+    frontend --> public1["public/"]
+    frontend --> components["components/"]
+    src1 --> pages["pages/"]
+    src1 --> styles["styles/"]
+    components --> forms["forms/"]
+    components --> tables["tables/"]
+    
+    backend --> api["api/"]
+    backend --> models["models/"]
+    backend --> services["services/"]
+    backend --> utils["utils/"]
+    
+    config --> env["env/"]
+    config --> docker-compose["docker-compose.yml"]
+    
+    docs --> schemas["schemas/"]
+    docs --> api-docs["api-docs/"]
+
+    tests --> unit["unit/"]
+    tests --> integration["integration/"]
+
+    scripts --> setup["setup.sh"]
+    scripts --> build["build.sh"]
+
+Structure complète du projet Euro Millions
+euro-millions/
+│
+├── .docker/
+│   ├── dockerfile.python
+│   └── dockerfile.frontend
+│
+├── frontend/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── index.js
+│   │   │   ├── simulation.js
+│   │   │   └── results.js
+│   │   │
+│   │   ├── styles/
+│   │   │   ├── globals.css
+│   │   │   └── theme.js
+│   │   │
+│   │   └── App.js
+│   │
+│   ├── components/
+│   │   ├── forms/
+│   │   │   ├── NumberInput.js
+│   │   │   └── ValidationForm.js
+│   │   │
+│   │   ├── tables/
+│   │   │   └── ResultsTable.js
+│   │   │
+│   │   └── layout/
+│   │       ├── Header.js
+│   │       ├── Footer.js
+│   │       └── Navigation.js
+│   │
+│   ├── public/
+│   │   ├── assets/
+│   │   │   └── images/
+│   │   └── index.html
+│   │
+│   ├── package.json
+│   └── README.md
+│
+├── backend/
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── routes.py
+│   │   └── endpoints.py
+│   │
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── euromillions.py
+│   │   └── database.py
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── generator.py
+│   │   └── validator.py
+│   │
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── cuda_utils.py
+│   │   └── helpers.py
+│   │
+│   └── tests/
+│       ├── __init__.py
+│       ├── test_generator.py
+│       └── test_validator.py
+│
+├── config/
+│   ├── env/
+│   │   ├── development.env
+│   │   └── production.env
+│   │
+│   ├── docker-compose.yml
+│   └── nginx.conf
+│
+├── docs/
+│   ├── schemas/
+│   │   ├── database.md
+│   │   └── api.md
+│   │
+│   └── api-docs/
+│       └── swagger.yaml
+│
+├── tests/
+│   ├── unit/
+│   │   ├── __init__.py
+│   │   ├── test_generator.py
+│   │   └── test_validator.py
+│   │
+│   └── integration/
+│       ├── __init__.py
+│       ├── test_api.py
+│       └── test_database.py
+│
+├── scripts/
+│   ├── setup.sh
+│   ├── build.sh
+│   └── deploy.sh
+│
+├── .env
+├── .gitignore
+├── README.md
+└── requirements.txt
+
+Configuration Docker avec support CUDA
+# Base Dockerfile pour Python avec support CUDA
+# .docker/dockerfile.python
+FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04 as cuda-base
+
+# Variables d'environnement pour CUDA
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
+ENV CUDA_VERSION=11.8
+ENV PATH=/usr/local/cuda/bin:${PATH}
+ENV LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+
+# Installation des dépendances système essentielles
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    python3.10 \
+    python3-pip \
+    python3.10-dev \
+    build-essential \
+    curl \
+    git \
+    net-tools \
+    nano \
+    wget \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installation des outils NVIDIA
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    nvidia-cuda-toolkit \
+    nvidia-utils-535 \
+    nvidia-driver-535 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installation des bibliothèques CUDA
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    libcudnn8 \
+    libcudnn8-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installation des dépendances Python
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Vérification de l'installation CUDA
+RUN nvidia-smi
+RUN python3 -c "import torch; print('CUDA available:', torch.cuda.is_available())"
+
+WORKDIR /app
+
+# Base Dockerfile pour le Frontend
+# .docker/dockerfile.frontend
+FROM node:18-bullseye-slim
+
+WORKDIR /app
+
+# Installation des dépendances système
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copie des fichiers de configuration
+COPY package*.json ./
+
+# Installation des dépendances
+RUN npm install
+
+# Copie du code source
+COPY . .
+
+# Construction de l'application
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
+
+# Base Dockerfile pour MariaDB
+# .docker/dockerfile.mariadb
+FROM mariadb:latest
+
+# Configuration de MariaDB pour de meilleures performances
+COPY ./config/mariadb.cnf /etc/mysql/conf.d/
+RUN chmod 644 /etc/mysql/conf.d/mariadb.cnf
+
+# Script d'initialisation de la base de données
+COPY ./scripts/init.sql /docker-entrypoint-initdb.d/
+
+# Variables d'environnement pour MariaDB
+ENV MYSQL_ROOT_PASSWORD=root
+ENV MYSQL_DATABASE=euromillions
+ENV MYSQL_USER=euro
+ENV MYSQL_PASSWORD=1000000
+
+
+Docker Compose Configuration
+version: '3.8'
+
+services:
+  python-backend:
+    build:
+      context: .
+      dockerfile: .docker/dockerfile.python
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - CUDA_VISIBLE_DEVICES=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    volumes:
+      - ./backend:/app
+      - /tmp/.X11-unix:/tmp/.X11-unix  # Pour l'accès à l'affichage si nécessaire
+    ports:
+      - "5000:5000"
+    networks:
+      - euromillions-network
+
+  frontend:
+    build:
+      context: .
+      dockerfile: .docker/dockerfile.frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    networks:
+      - euromillions-network
+    depends_on:
+      - python-backend
+
+  mariadb:
+    build:
+      context: .
+      dockerfile: .docker/dockerfile.mariadb
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./config/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=euromillions
+      - MYSQL_USER=euro
+      - MYSQL_PASSWORD=1000000
+    networks:
+      - euromillions-network
+
+networks:
+  euromillions-network:
+    driver: bridge
+
+volumes:
+  mariadb_data:
+    driver: local
+
+Schéma de la base de données EuroMillions
+erDiagram
+    TIRAGE {
+        bigint id PK
+        date date_tirage
+        int numero1
+        int numero2
+        int numero3
+        int numero4
+        int numero5
+        int complementaire1
+        int complementaire2
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    SIMULATIONS {
+        bigint id PK
+        bigint tirage_id FK
+        int numero1
+        int numero2
+        int numero3
+        int numero4
+        int numero5
+        int complementaire1
+        int complementaire2
+        boolean is_valid
+        timestamp simulation_date
+    }
+
+    TIRAGE ||--o{ SIMULATIONS : "génère"
+
+
+Script d'initialisation de la base de données
+-- Création de la base de données avec le bon encodage
+CREATE DATABASE IF NOT EXISTS euromillions
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
+USE euromillions;
+
+-- Table des tirages
+CREATE TABLE tirage (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    date_tirage DATE NOT NULL,
+    numero1 TINYINT UNSIGNED NOT NULL CHECK (numero1 BETWEEN 1 AND 50),
+    numero2 TINYINT UNSIGNED NOT NULL CHECK (numero2 BETWEEN 1 AND 50),
+    numero3 TINYINT UNSIGNED NOT NULL CHECK (numero3 BETWEEN 1 AND 50),
+    numero4 TINYINT UNSIGNED NOT NULL CHECK (numero4 BETWEEN 1 AND 50),
+    numero5 TINYINT UNSIGNED NOT NULL CHECK (numero5 BETWEEN 1 AND 50),
+    complementaire1 TINYINT UNSIGNED NOT NULL CHECK (complementaire1 BETWEEN 1 AND 12),
+    complementaire2 TINYINT UNSIGNED NOT NULL CHECK (complementaire2 BETWEEN 1 AND 12),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    -- Contraintes pour assurer l'ordre croissant des numéros
+    CHECK (numero1 < numero2),
+    CHECK (numero2 < numero3),
+    CHECK (numero3 < numero4),
+    CHECK (numero4 < numero5),
+    CHECK (complementaire1 < complementaire2),
+    -- Index pour optimiser les recherches
+    INDEX idx_date (date_tirage),
+    INDEX idx_numeros (numero1, numero2, numero3, numero4, numero5)
+);
+
+-- Table des simulations
+CREATE TABLE simulations (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    tirage_id BIGINT,
+    numero1 TINYINT UNSIGNED NOT NULL CHECK (numero1 BETWEEN 1 AND 50),
+    numero2 TINYINT UNSIGNED NOT NULL CHECK (numero2 BETWEEN 1 AND 50),
+    numero3 TINYINT UNSIGNED NOT NULL CHECK (numero3 BETWEEN 1 AND 50),
+    numero4 TINYINT UNSIGNED NOT NULL CHECK (numero4 BETWEEN 1 AND 50),
+    numero5 TINYINT UNSIGNED NOT NULL CHECK (numero5 BETWEEN 1 AND 50),
+    complementaire1 TINYINT UNSIGNED NOT NULL CHECK (complementaire1 BETWEEN 1 AND 12),
+    complementaire2 TINYINT UNSIGNED NOT NULL CHECK (complementaire2 BETWEEN 1 AND 12),
+    is_valid BOOLEAN DEFAULT TRUE,
+    simulation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (tirage_id) REFERENCES tirage(id) ON DELETE SET NULL,
+    -- Contraintes pour assurer l'ordre croissant des numéros
+    CHECK (numero1 < numero2),
+    CHECK (numero2 < numero3),
+    CHECK (numero3 < numero4),
+    CHECK (numero4 < numero5),
+    CHECK (complementaire1 < complementaire2)
+);
+
+-- Procédure stockée pour valider les numéros
+DELIMITER //
+CREATE PROCEDURE ValidateNumbers(
+    IN n1 TINYINT, IN n2 TINYINT, IN n3 TINYINT, 
+    IN n4 TINYINT, IN n5 TINYINT,
+    IN c1 TINYINT, IN c2 TINYINT,
+    OUT valid BOOLEAN
+)
+BEGIN
+    SET valid = (
+        n1 BETWEEN 1 AND 50 AND
+        n2 BETWEEN 1 AND 50 AND
+        n3 BETWEEN 1 AND 50 AND
+        n4 BETWEEN 1 AND 50 AND
+        n5 BETWEEN 1 AND 50 AND
+        c1 BETWEEN 1 AND 12 AND
+        c2 BETWEEN 1 AND 12 AND
+        n1 < n2 AND n2 < n3 AND n3 < n4 AND n4 < n5 AND
+        c1 < c2
+    );
+END //
+DELIMITER ;
+
+-- Configuration des privileges
+GRANT SELECT, INSERT, UPDATE, DELETE ON euromillions.* TO 'euro'@'%';
+GRANT EXECUTE ON PROCEDURE euromillions.ValidateNumbers TO 'euro'@'%';
+FLUSH PRIVILEGES;
+
+Configuration optimisée de MariaDB
+[mysqld]
+# Optimisations mémoire pour 32GB RAM
+innodb_buffer_pool_size = 16G
+innodb_buffer_pool_instances = 16
+innodb_log_file_size = 2G
+innodb_log_buffer_size = 64M
+innodb_flush_log_at_trx_commit = 2
+innodb_flush_method = O_DIRECT
+
+# Optimisations CPU pour Ryzen 9 5900X
+thread_cache_size = 24
+innodb_read_io_threads = 12
+innodb_write_io_threads = 12
+innodb_thread_concurrency = 24
+
+# Optimisations SSD NVMe
+innodb_io_capacity = 5000
+innodb_io_capacity_max = 10000
+innodb_flush_neighbors = 0
+innodb_random_read_ahead = 0
+innodb_read_ahead_threshold = 0
+
+# Optimisations générales
+max_connections = 1000
+table_open_cache = 4000
+table_definition_cache = 4000
+sort_buffer_size = 4M
+read_buffer_size = 3M
+read_rnd_buffer_size = 4M
+join_buffer_size = 4M
+
+# Configuration caractères
+character-set-server = utf8mb4
+collation-server = utf8mb4_unicode_ci
+
+Configuration Docker optimisée pour RTX 3080
+# .docker/dockerfile.python
+FROM nvidia/cuda:11.8.0-runtime-ubuntu22.04 as cuda-base
+
+# Configuration spécifique pour forcer l'utilisation de la RTX 3080
+ENV NVIDIA_VISIBLE_DEVICES=0
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility,graphics
+ENV CUDA_DEVICE_ORDER=PCI_BUS_ID
+ENV CUDA_VISIBLE_DEVICES=0
+ENV __NV_PRIME_RENDER_OFFLOAD=1
+ENV __GLX_VENDOR_LIBRARY_NAME=nvidia
+ENV __VK_LAYER_NV_optimus=NVIDIA_only
+
+# Installation des dépendances système essentielles
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    python3.10 \
+    python3-pip \
+    python3.10-dev \
+    build-essential \
+    nvidia-cuda-toolkit \
+    nvidia-utils-535 \
+    nvidia-driver-535 \
+    libcudnn8 \
+    libcudnn8-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Script de vérification de la carte graphique
+COPY ./scripts/check_gpu.py /tmp/
+RUN python3 /tmp/check_gpu.py
+
+WORKDIR /app
+
+# Installation des dépendances Python optimisées pour CUDA
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+Script de vérification GPU
+# scripts/check_gpu.py
+import torch
+import sys
+
+def check_gpu():
+    if not torch.cuda.is_available():
+        print("ERREUR: CUDA n'est pas disponible")
+        sys.exit(1)
+    
+    # Vérifie si la RTX 3080 est détectée
+    gpu_name = torch.cuda.get_device_name(0)
+    if "3080" not in gpu_name:
+        print(f"ATTENTION: RTX 3080 non détectée. GPU trouvé: {gpu_name}")
+        sys.exit(1)
+    
+    # Affiche les informations de la carte
+    print("\nInformations GPU:")
+    print(f"Carte détectée: {gpu_name}")
+    print(f"Mémoire totale: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.2f} GB")
+    print(f"Nombre de CUDA cores: {torch.cuda.get_device_properties(0).multi_processor_count * 128}")
+    
+    # Test de performance basique
+    x = torch.randn(1000, 1000).cuda()
+    torch.matmul(x, x.t())
+    print("Test de performance GPU réussi")
+
+if __name__ == "__main__":
+    check_gpu()
+
+Docker Compose avec configuration GPU optimisée
+version: '3.8'
+
+services:
+  python-backend:
+    build:
+      context: .
+      dockerfile: .docker/dockerfile.python
+    runtime: nvidia
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu, compute, utility, graphics]
+              device_ids: ['0'] # Force l'utilisation du GPU 0 (RTX 3080)
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=0
+      - CUDA_VISIBLE_DEVICES=0
+      - __NV_PRIME_RENDER_OFFLOAD=1
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+    volumes:
+      - ./backend:/app
+      - nvidia_driver:/usr/local/nvidia:ro
+    ports:
+      - "5000:5000"
+    networks:
+      - euromillions-network
+
+networks:
+  euromillions-network:
+    driver: bridge
+
+volumes:
+  nvidia_driver:
+    external: true
+
+
+Générateur EuroMillions optimisé GPU
+# backend/services/generator.py
+import torch
+import torch.nn as nn
+import numpy as np
+from typing import Tuple, List, Optional
+import logging
+
+class EuroMillionsGenerator:
+    def __init__(self):
+        # Vérification et initialisation du GPU
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        if self.device.type != "cuda":
+            raise RuntimeError("GPU non disponible. Vérifiez votre configuration CUDA.")
+        
+        # Configuration des paramètres
+        self.main_numbers_range = 50
+        self.star_numbers_range = 12
+        self.batch_size = 10000  # Optimisé pour RTX 3080
+        
+        # Initialisation du générateur sur GPU
+        torch.cuda.set_device(0)
+        torch.backends.cudnn.benchmark = True
+    
+    def _generate_batch(self, size: int) -> torch.Tensor:
+        """Génère un lot de numéros aléatoires sur GPU."""
+        numbers = torch.rand((size, 7), device=self.device)
+        main_numbers = (numbers[:, :5] * self.main_numbers_range).floor() + 1
+        star_numbers = (numbers[:, 5:] * self.star_numbers_range).floor() + 1
+        
+        # Tri des numéros pour respecter l'ordre croissant
+        main_numbers, _ = torch.sort(main_numbers, dim=1)
+        star_numbers, _ = torch.sort(star_numbers, dim=1)
+        
+        return torch.cat([main_numbers, star_numbers], dim=1)
+    
+    def _validate_combination(self, numbers: torch.Tensor) -> torch.Tensor:
+        """Valide les combinaisons sur GPU."""
+        # Vérifie que les numéros sont uniques et dans l'ordre
+        main_diff = numbers[:, 1:5] - numbers[:, :4]
+        star_diff = numbers[:, 6:] - numbers[:, 5:6]
+        
+        # Tous les écarts doivent être positifs pour l'ordre croissant
+        valid_main = (main_diff > 0).all(dim=1)
+        valid_stars = (star_diff > 0).all(dim=1)
+        
+        return valid_main & valid_stars
+    
+    @torch.cuda.amp.autocast()
+    def generate_valid_combinations(self, count: int) -> List[Tuple[List[int], List[int]]]:
+        """Génère des combinaisons valides d'EuroMillions."""
+        valid_combinations = []
+        remaining = count
+        
+        while remaining > 0:
+            # Génération par lots pour optimiser l'utilisation du GPU
+            batch_size = min(self.batch_size, remaining * 2)
+            numbers = self._generate_batch(batch_size)
+            
+            # Validation sur GPU
+            valid_mask = self._validate_combination(numbers)
+            valid_numbers = numbers[valid_mask]
+            
+            # Conversion et ajout des combinaisons valides
+            for nums in valid_numbers[:remaining].cpu().numpy():
+                main_nums = nums[:5].tolist()
+                star_nums = nums[5:].tolist()
+                valid_combinations.append((main_nums, star_nums))
+                remaining -= 1
+                if remaining == 0:
+                    break
+        
+        return valid_combinations
+    
+    def find_next_sequence(self, current_numbers: Tuple[List[int], List[int]]) -> Tuple[List[int], List[int]]:
+        """Trouve la séquence suivante selon les règles définies."""
+        current_main, current_stars = current_numbers
+        
+        # Conversion en tenseurs GPU
+        main = torch.tensor(current_main, device=self.device)
+        stars = torch.tensor(current_stars, device=self.device)
+        
+        # Incrémentation des étoiles
+        if stars[1] < self.star_numbers_range:
+            stars[1] += 1
+        elif stars[0] < self.star_numbers_range - 1:
+            stars[0] += 1
+            stars[1] = stars[0] + 1
+        else:
+            stars[0] = 1
+            stars[1] = 2
+            # Incrémentation des numéros principaux
+            for i in range(4, -1, -1):
+                if main[i] < self.main_numbers_range - (4 - i):
+                    main[i] += 1
+                    for j in range(i + 1, 5):
+                        main[j] = main[j-1] + 1
+                    break
+        
+        return main.cpu().tolist(), stars.cpu().tolist()
+
+class EuroMillionsValidator:
+    def __init__(self):
+        self.device = torch.device("cuda:0")
+        self.generator = EuroMillionsGenerator()
+    
+    @torch.cuda.amp.autocast()
+    def validate_numbers(self, main_numbers: List[int], star_numbers: List[int]) -> bool:
+        """Valide une combinaison de numéros."""
+        numbers = torch.tensor(main_numbers + star_numbers, device=self.device)
+        return self.generator._validate_combination(numbers.unsqueeze(0))[0].item()
+
+Gestionnaire de base de données
+# backend/services/db_manager.py
+import mysql.connector
+from typing import List, Tuple, Optional
+import logging
+
+class EuroMillionsDB:
+    def __init__(self):
+        self.connection = mysql.connector.connect(
+            host='mariadb',
+            user='euro',
+            password='1000000',
+            database='euromillions'
+        )
+        self.cursor = self.connection.cursor()
+    
+    def add_tirage(self, main_numbers: List[int], star_numbers: List[int], date_tirage: str) -> int:
+        """Ajoute un nouveau tirage dans la base de données."""
+        query = """
+        INSERT INTO tirage (
+            date_tirage, numero1, numero2, numero3, numero4, numero5,
+            complementaire1, complementaire2
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        values = (date_tirage, *main_numbers, *star_numbers)
+        
+        self.cursor.execute(query, values)
+        self.connection.commit()
+        return self.cursor.lastrowid
+    
+    def get_last_tirage(self) -> Optional[Tuple[List[int], List[int]]]:
+        """Récupère le dernier tirage."""
+        query = """
+        SELECT numero1, numero2, numero3, numero4, numero5,
+               complementaire1, complementaire2
+        FROM tirage
+        ORDER BY date_tirage DESC
+        LIMIT 1
+        """
+        self.cursor.execute(query)
+        result = self.cursor.fetchone()
+        
+        if result:
+            return list(result[:5]), list(result[5:])
+        return None
+    
+    def add_simulation(self, main_numbers: List[int], star_numbers: List[int], 
+                      tirage_id: Optional[int] = None) -> int:
+        """Ajoute une simulation."""
+        query = """
+        INSERT INTO simulations (
+            tirage_id, numero1, numero2, numero3, numero4, numero5,
+            complementaire1, complementaire2
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """
+        values = (tirage_id, *main_numbers, *star_numbers)
+        
+        self.cursor.execute(query, values)
+        self.connection.commit()
+        return self.cursor.lastrowid
+    
+    def close(self):
+        """Ferme la connexion à la base de données."""
+        self.cursor.close()
+        self.connection.close()
+
+  API Flask EuroMillions
+  # backend/api/app.py
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import logging
+from datetime import datetime
+import sys
+import os
+
+# Ajout du chemin du backend aux imports
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from services.generator import EuroMillionsGenerator, EuroMillionsValidator
+from services.db_manager import EuroMillionsDB
+
+app = Flask(__name__)
+CORS(app)  # Permet les requêtes cross-origin
+
+# Configuration du logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Initialisation des services
+generator = EuroMillionsGenerator()
+validator = EuroMillionsValidator()
+db = EuroMillionsDB()
+
+@app.route('/health', methods=['GET'])
+def health_check():
+    """Vérifie que l'API est en ligne et que le GPU est disponible."""
+    try:
+        # Vérifie la connexion GPU
+        import torch
+        gpu_available = torch.cuda.is_available()
+        gpu_name = torch.cuda.get_device_name(0) if gpu_available else "Non disponible"
+        
+        return jsonify({
+            'status': 'online',
+            'gpu_available': gpu_available,
+            'gpu_name': gpu_name,
+            'timestamp': datetime.now().isoformat()
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
+@app.route('/generate', methods=['POST'])
+def generate_numbers():
+    """Génère une ou plusieurs combinaisons de numéros."""
+    try:
+        data = request.get_json()
+        count = data.get('count', 1)
+        
+        if count < 1 or count > 100:
+            return jsonify({
+                'error': 'Le nombre de combinaisons doit être entre 1 et 100'
+            }), 400
+        
+        combinations = generator.generate_valid_combinations(count)
+        
+        return jsonify({
+            'combinations': [
+                {
+                    'main_numbers': main,
+                    'star_numbers': stars
+                } for main, stars in combinations
+            ]
+        })
+    except Exception as e:
+        logger.error(f"Erreur lors de la génération: {str(e)}")
+        return jsonify({
+            'error': 'Erreur lors de la génération des numéros'
+        }), 500
+
+@app.route('/validate', methods=['POST'])
+def validate_numbers():
+    """Valide une combinaison de numéros."""
+    try:
+        data = request.get_json()
+        main_numbers = data.get('main_numbers', [])
+        star_numbers = data.get('star_numbers', [])
+        
+        if not main_numbers or not star_numbers:
+            return jsonify({
+                'error': 'Numéros manquants'
+            }), 400
+        
+        is_valid = validator.validate_numbers(main_numbers, star_numbers)
+        
+        return jsonify({
+            'valid': is_valid
+        })
+    except Exception as e:
+        logger.error(f"Erreur lors de la validation: {str(e)}")
+        return jsonify({
+            'error': 'Erreur lors de la validation des numéros'
+        }), 500
+
+@app.route('/next-sequence', methods=['POST'])
+def get_next_sequence():
+    """Trouve la séquence suivante pour une combinaison donnée."""
+    try:
+        data = request.get_json()
+        current_main = data.get('main_numbers', [])
+        current_stars = data.get('star_numbers', [])
+        
+        next_main, next_stars = generator.find_next_sequence((current_main, current_stars))
+        
+        return jsonify({
+            'main_numbers': next_main,
+            'star_numbers': next_stars
+        })
+    except Exception as e:
+        logger.error(f"Erreur lors de la recherche de séquence: {str(e)}")
+        return jsonify({
+            'error': 'Erreur lors de la recherche de la séquence suivante'
+        }), 500
+
+@app.route('/history', methods=['GET'])
+def get_history():
+    """Récupère l'historique des tirages."""
+    try:
+        last_tirage = db.get_last_tirage()
+        if last_tirage:
+            main_numbers, star_numbers = last_tirage
+            return jsonify({
+                'main_numbers': main_numbers,
+                'star_numbers': star_numbers
+            })
+        return jsonify({
+            'message': 'Aucun tirage trouvé'
+        }), 404
+    except Exception as e:
+        logger.error(f"Erreur lors de la récupération de l'historique: {str(e)}")
+        return jsonify({
+            'error': 'Erreur lors de la récupération de l'historique'
+        }), 500
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
+
+Configuration WSGI
+# backend/wsgi.py
+from api.app import app
+
+if __name__ == "__main__":
+    app.run()
+
+Interface EuroMillions
+import React, { useState, useEffect } from 'react';
+import { AlertCircle, RefreshCw, Check, X } from 'lucide-react';
+
+// Composant principal
+export default function EuroMillionsApp() {
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+  const [id, setId] = useState('');
+  const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [gpuStatus, setGpuStatus] = useState(null);
+
+  useEffect(() => {
+    checkGPUStatus();
+  }, []);
+
+  const checkGPUStatus = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/health');
+      const data = await response.json();
+      setGpuStatus(data);
+    } catch (error) {
+      setMessage('Erreur de connexion au serveur');
+    }
+  };
+
+  const handleGenerate = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('http://localhost:5000/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ count: 1 })
+      });
+      const data = await response.json();
+      if (data.combinations && data.combinations.length > 0) {
+        setMainNumbers(data.combinations[0].main_numbers);
+        setStarNumbers(data.combinations[0].star_numbers);
+      }
+    } catch (error) {
+      setMessage('Erreur lors de la génération');
+    }
+    setIsLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-800 text-white p-8">
+      <div className="max-w-4xl mx-auto">
+        {/* En-tête */}
+        <header className="text-center mb-12">
+          <h1 className="text-4xl font-bold mb-4">EuroMillions Generator</h1>
+          <div className="flex items-center justify-center gap-2">
+            {gpuStatus?.gpu_available ? (
+              <div className="flex items-center text-green-400">
+                <Check size={20} className="mr-2" />
+                <span>GPU: {gpuStatus.gpu_name}</span>
+              </div>
+            ) : (
+              <div className="flex items-center text-red-400">
+                <X size={20} className="mr-2" />
+                <span>GPU non disponible</span>
+              </div>
+            )}
+          </div>
+        </header>
+
+        {/* Section principale */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-2xl">
+          {/* Entrée ID */}
+          <div className="mb-8">
+            <label className="block text-lg mb-2">ID du tirage</label>
+            <input
+              type="text"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white"
+              placeholder="Entrez l'ID"
+            />
+          </div>
+
+          {/* Numéros principaux */}
+          <div className="mb-8">
+            <label className="block text-lg mb-2">Numéros principaux</label>
+            <div className="grid grid-cols-5 gap-4">
+              {mainNumbers.map((num, idx) => (
+                <input
+                  key={idx}
+                  type="number"
+                  value={num}
+                  onChange={(e) => {
+                    const newNumbers = [...mainNumbers];
+                    newNumbers[idx] = e.target.value;
+                    setMainNumbers(newNumbers);
+                  }}
+                  className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-center text-white"
+                  placeholder={(idx + 1).toString()}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Numéros étoiles */}
+          <div className="mb-8">
+            <label className="block text-lg mb-2">Numéros étoiles</label>
+            <div className="grid grid-cols-2 gap-4">
+              {starNumbers.map((num, idx) => (
+                <input
+                  key={idx}
+                  type="number"
+                  value={num}
+                  onChange={(e) => {
+                    const newNumbers = [...starNumbers];
+                    newNumbers[idx] = e.target.value;
+                    setStarNumbers(newNumbers);
+                  }}
+                  className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-center text-white"
+                  placeholder="★"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Boutons d'action */}
+          <div className="flex gap-4">
+            <button
+              onClick={handleGenerate}
+              disabled={isLoading}
+              className="flex-1 bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4 flex items-center justify-center gap-2 transition-colors"
+            >
+              {isLoading ? (
+                <RefreshCw className="animate-spin" />
+              ) : (
+                <>
+                  <RefreshCw />
+                  Générer
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Messages */}
+          {message && (
+            <div className="mt-4 flex items-center gap-2 text-yellow-300">
+              <AlertCircle size={20} />
+              <span>{message}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Styles globaux
+/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-blue: #1e40af;
+  --secondary-blue: #1e3a8a;
+}
+
+body {
+  @apply bg-gradient-to-b from-blue-900 to-blue-800;
+  min-height: 100vh;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.glass-effect {
+  @apply bg-white/10 backdrop-blur-lg;
+}
+
+Page d'accueil EuroMillions
+import React, { useState } from 'react';
+import { AlertCircle, Search, RefreshCw } from 'lucide-react';
+
+export default function HomePage() {
+  const [id, setId] = useState('');
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleValidate = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      if (id) {
+        // Recherche par ID
+        const response = await fetch('http://localhost:5000/validate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id })
+        });
+        const data = await response.json();
+        if (data.main_numbers && data.star_numbers) {
+          setMainNumbers(data.main_numbers);
+          setStarNumbers(data.star_numbers);
+        }
+      } else {
+        // Validation des numéros entrés
+        const response = await fetch('http://localhost:5000/validate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            main_numbers: mainNumbers.map(Number),
+            star_numbers: starNumbers.map(Number)
+          })
+        });
+        const data = await response.json();
+        if (!data.valid) {
+          setError('Combinaison invalide');
+        }
+      }
+    } catch (error) {
+      setError('Erreur de validation');
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-800 p-6">
+      <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+        <h1 className="text-3xl font-bold text-white text-center mb-8">
+          EuroMillions Generator
+        </h1>
+
+        {/* Zone de recherche ID */}
+        <div className="mb-8">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Entrer l'ID"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+            />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+          </div>
+        </div>
+
+        {/* Zone des numéros principaux */}
+        <div className="mb-6">
+          <label className="text-white text-lg mb-2 block">
+            Numéros principaux
+          </label>
+          <div className="grid grid-cols-5 gap-3">
+            {mainNumbers.map((num, idx) => (
+              <input
+                key={`main-${idx}`}
+                type="number"
+                min="1"
+                max="50"
+                value={num}
+                onChange={(e) => {
+                  const newNumbers = [...mainNumbers];
+                  newNumbers[idx] = e.target.value;
+                  setMainNumbers(newNumbers);
+                }}
+                className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white text-center"
+                placeholder={(idx + 1).toString()}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Zone des étoiles */}
+        <div className="mb-8">
+          <label className="text-white text-lg mb-2 block">
+            Numéros étoiles
+          </label>
+          <div className="grid grid-cols-2 gap-3 max-w-xs">
+            {starNumbers.map((num, idx) => (
+              <input
+                key={`star-${idx}`}
+                type="number"
+                min="1"
+                max="12"
+                value={num}
+                onChange={(e) => {
+                  const newStars = [...starNumbers];
+                  newStars[idx] = e.target.value;
+                  setStarNumbers(newStars);
+                }}
+                className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white text-center"
+                placeholder="★"
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Bouton de validation */}
+        <button
+          onClick={handleValidate}
+          disabled={loading}
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4 flex items-center justify-center gap-2 transition-colors"
+        >
+          {loading ? (
+            <RefreshCw className="animate-spin" />
+          ) : (
+            <>Valider</>
+          )}
+        </button>
+
+        {/* Message d'erreur */}
+        {error && (
+          <div className="mt-4 flex items-center gap-2 text-red-400">
+            <AlertCircle size={20} />
+            <span>{error}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+
+Page d'accueil EuroMillions avec Navigation
+import React, { useState } from 'react';
+import { AlertCircle, Search, RefreshCw, Home } from 'lucide-react';
+
+export default function HomePage() {
+  const [id, setId] = useState('');
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [activePage, setActivePage] = useState('accueil');
+
+  const handleValidate = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      // ... (même logique de validation qu'avant)
+    } catch (error) {
+      setError('Erreur de validation');
+    }
+    setLoading(false);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Barre de navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            {/* Logo / Accueil */}
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            {/* Boutons de navigation */}
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setActivePage('accueil')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  activePage === 'accueil' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Accueil
+              </button>
+              
+              <button 
+                onClick={() => setActivePage('simulationA')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  activePage === 'simulationA' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation A
+              </button>
+              
+              <button 
+                onClick={() => setActivePage('simulationB')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  activePage === 'simulationB' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation B
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <div className="p-6">
+        <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h1 className="text-3xl font-bold text-white text-center mb-8">
+            EuroMillions Generator
+          </h1>
+
+          {/* Zone de recherche ID */}
+          <div className="mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Entrer l'ID"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+                className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+              />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+            </div>
+          </div>
+
+          {/* Zone des numéros principaux */}
+          <div className="mb-6">
+            <label className="text-white text-lg mb-2 block">
+              Numéros principaux
+            </label>
+            <div className="grid grid-cols-5 gap-3">
+              {mainNumbers.map((num, idx) => (
+                <input
+                  key={`main-${idx}`}
+                  type="number"
+                  min="1"
+                  max="50"
+                  value={num}
+                  onChange={(e) => {
+                    const newNumbers = [...mainNumbers];
+                    newNumbers[idx] = e.target.value;
+                    setMainNumbers(newNumbers);
+                  }}
+                  className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white text-center"
+                  placeholder={(idx + 1).toString()}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Zone des étoiles */}
+          <div className="mb-8">
+            <label className="text-white text-lg mb-2 block">
+              Numéros étoiles
+            </label>
+            <div className="grid grid-cols-2 gap-3 max-w-xs">
+              {starNumbers.map((num, idx) => (
+                <input
+                  key={`star-${idx}`}
+                  type="number"
+                  min="1"
+                  max="12"
+                  value={num}
+                  onChange={(e) => {
+                    const newStars = [...starNumbers];
+                    newStars[idx] = e.target.value;
+                    setStarNumbers(newStars);
+                  }}
+                  className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white text-center"
+                  placeholder="★"
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Bouton de validation */}
+          <button
+            onClick={handleValidate}
+            disabled={loading}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4 flex items-center justify-center gap-2 transition-colors"
+          >
+            {loading ? (
+              <RefreshCw className="animate-spin" />
+            ) : (
+              <>Valider</>
+            )}
+          </button>
+
+          {/* Message d'erreur */}
+          {error && (
+            <div className="mt-4 flex items-center gap-2 text-red-400">
+              <AlertCircle size={20} />
+              <span>{error}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+Système de routage EuroMillions
+import React, { useState } from 'react';
+import { AlertCircle, Search, RefreshCw, Home } from 'lucide-react';
+
+// Composant principal qui gère le routage
+export default function AppRouter() {
+  const [currentPage, setCurrentPage] = useState('accueil');
+
+  // Fonction de rendu conditionnelle
+  const renderPage = () => {
+    switch(currentPage) {
+      case 'simulationA':
+        return <SimulationA />;
+      case 'simulationB':
+        return <SimulationB />;
+      default:
+        return <Accueil />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Barre de navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setCurrentPage('accueil')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'accueil' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Accueil
+              </button>
+              
+              <button 
+                onClick={() => setCurrentPage('simulationA')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'simulationA' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation A
+              </button>
+              
+              <button 
+                onClick={() => setCurrentPage('simulationB')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'simulationB' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation B
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Rendu de la page courante */}
+      <div className="p-6">
+        {renderPage()}
+      </div>
+    </div>
+  );
+}
+
+// Composant page d'accueil
+function Accueil() {
+  const [id, setId] = useState('');
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleValidate = async () => {
+    // ... logique de validation
+  };
+
+  return (
+    <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+      <h1 className="text-3xl font-bold text-white text-center mb-8">
+        EuroMillions Generator
+      </h1>
+
+      {/* Zone de recherche ID */}
+      <div className="mb-8">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Entrer l'ID"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+            className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+          />
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+        </div>
+      </div>
+
+      {/* Zone des numéros principaux */}
+      <div className="mb-6">
+        <label className="text-white text-lg mb-2 block">
+          Numéros principaux
+        </label>
+        <div className="grid grid-cols-5 gap-3">
+          {mainNumbers.map((num, idx) => (
+            <input
+              key={`main-${idx}`}
+              type="number"
+              min="1"
+              max="50"
+              value={num}
+              onChange={(e) => {
+                const newNumbers = [...mainNumbers];
+                newNumbers[idx] = e.target.value;
+                setMainNumbers(newNumbers);
+              }}
+              className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white text-center"
+              placeholder={(idx + 1).toString()}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Zone des étoiles */}
+      <div className="mb-8">
+        <label className="text-white text-lg mb-2 block">
+          Numéros étoiles
+        </label>
+        <div className="grid grid-cols-2 gap-3 max-w-xs">
+          {starNumbers.map((num, idx) => (
+            <input
+              key={`star-${idx}`}
+              type="number"
+              min="1"
+              max="12"
+              value={num}
+              onChange={(e) => {
+                const newStars = [...starNumbers];
+                newStars[idx] = e.target.value;
+                setStarNumbers(newStars);
+              }}
+              className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white text-center"
+              placeholder="★"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Bouton de validation */}
+      <button
+        onClick={handleValidate}
+        disabled={loading}
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4 flex items-center justify-center gap-2 transition-colors"
+      >
+        {loading ? (
+          <RefreshCw className="animate-spin" />
+        ) : (
+          <>Valider</>
+        )}
+      </button>
+
+      {/* Message d'erreur */}
+      {error && (
+        <div className="mt-4 flex items-center gap-2 text-red-400">
+          <AlertCircle size={20} />
+          <span>{error}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Composants pour les pages de simulation
+function SimulationA() {
+  return (
+    <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+      <h1 className="text-3xl font-bold text-white text-center mb-8">
+        Simulation A
+      </h1>
+      {/* Contenu de la simulation A à venir */}
+    </div>
+  );
+}
+
+function SimulationB() {
+  return (
+    <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+      <h1 className="text-3xl font-bold text-white text-center mb-8">
+        Simulation B
+      </h1>
+      {/* Contenu de la simulation B à venir */}
+    </div>
+  );
+}
+
+Page d'accueil avec tableau de résultats
+import React, { useState } from 'react';
+import { AlertCircle, Search, RefreshCw, Home } from 'lucide-react';
+
+// Composant du tableau des résultats
+function ResultsTable() {
+  return (
+    <div className="overflow-x-auto bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl mb-8">
+      <h2 className="text-2xl font-bold text-white mb-4">Résultats EuroMillions</h2>
+      <table className="w-full">
+        <thead>
+          <tr className="border-b border-blue-400/30">
+            <th className="text-blue-200 p-3 text-left">ID</th>
+            <th className="text-blue-200 p-3 text-center">Numéros</th>
+            <th className="text-blue-200 p-3 text-center">Étoiles</th>
+          </tr>
+        </thead>
+        <tbody>
+          {Array.from({ length: 10 }).map((_, index) => (
+            <tr 
+              key={index} 
+              className="border-b border-blue-400/10 hover:bg-blue-900/30 transition-colors"
+            >
+              <td className="text-white p-3">{index + 1}</td>
+              <td className="text-white p-3">
+                <div className="flex justify-center space-x-2">
+                  {[1, 2, 3, 4, 5].map((num, idx) => (
+                    <span 
+                      key={idx}
+                      className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center"
+                    >
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </td>
+              <td className="text-white p-3">
+                <div className="flex justify-center space-x-2">
+                  {[1, 2].map((num, idx) => (
+                    <span 
+                      key={idx}
+                      className="w-8 h-8 rounded-full bg-yellow-600 flex items-center justify-center"
+                    >
+                      {num}
+                    </span>
+                  ))}
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+export default function AppRouter() {
+  const [currentPage, setCurrentPage] = useState('accueil');
+
+  const renderPage = () => {
+    switch(currentPage) {
+      case 'simulationA':
+        return <SimulationA />;
+      case 'simulationB':
+        return <SimulationB />;
+      default:
+        return <Accueil />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Barre de navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span 

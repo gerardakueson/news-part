@@ -1,0 +1,2597 @@
+className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setCurrentPage('accueil')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'accueil' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Accueil
+              </button>
+              
+              <button 
+                onClick={() => setCurrentPage('simulationA')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'simulationA' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation A
+              </button>
+              
+              <button 
+                onClick={() => setCurrentPage('simulationB')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'simulationB' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation B
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <div className="p-6 max-w-6xl mx-auto">
+        {/* Zone C - Tableau des résultats */}
+        <ResultsTable />
+        
+        {/* Zones A et B */}
+        {renderPage()}
+      </div>
+    </div>
+  );
+}
+
+// Composant page d'accueil (Zones A et B)
+function Accueil() {
+  // ... (reste du code inchangé pour les zones A et B)
+}
+
+// Composants pour les pages de simulation (inchangés)
+function SimulationA() {
+  return (
+    <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+      <h1 className="text-3xl font-bold text-white text-center mb-8">
+        Simulation A
+      </h1>
+    </div>
+  );
+}
+
+function SimulationB() {
+  return (
+    <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+      <h1 className="text-3xl font-bold text-white text-center mb-8">
+        Simulation B
+      </h1>
+    </div>
+  );
+}
+
+Progression du projet EurosMillions
+graph TD
+    subgraph "Déjà Réalisé"
+        A[Création du dossier eurosMillions]
+        B[Création docker-compose.yml vide]
+        C[Création dossier .docker]
+        D[Création dockerfile.python vide]
+    end
+
+    subgraph "À Réaliser"
+        E[Configuration dockerfile.python]
+        F[Configuration docker-compose.yml]
+        G[Mise en place environnement CUDA]
+        H[Création structure du projet]
+        I[Configuration Base de données]
+        J[Développement Backend Python]
+        K[Développement Frontend React]
+        L[Tests et Déploiement]
+    end
+
+    A --> B
+    A --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I --> J
+    J --> K
+    K --> L
+
+Feuille de route complète du projet EurosMillions
+graph TD
+    subgraph "1. Déjà Réalisé"
+        A[Création dossier eurosMillions]
+        B[Création docker-compose.yml vide]
+        C[Création dossier .docker]
+        D[Création dockerfile.python vide]
+    end
+
+    subgraph "2. Configuration Environnement"
+        E[Configuration dockerfile.python]
+        F[Configuration docker-compose.yml]
+        G[Mise en place CUDA/RTX 3080]
+    end
+
+    subgraph "3. Structure Projet"
+        H[Création architecture dossiers]
+        I[Configuration base de données]
+        J[Installation dépendances]
+    end
+
+    subgraph "4. Développement Core"
+        K[Générateur de numéros]
+        L[Système de séquençage]
+        M[Validation des règles]
+        N[Optimisation GPU]
+    end
+
+    subgraph "5. Backend Flask"
+        O[API Routes]
+        P[Connexion base de données]
+        Q[Logique métier]
+        R[Gestion des erreurs]
+    end
+
+    subgraph "6. Frontend React"
+        S[Page d'accueil]
+        T[Simulation A]
+        U[Simulation B]
+        V[Tableau résultats]
+    end
+
+    subgraph "7. Intégration"
+        W[Connexion Frontend-Backend]
+        X[Tests intégration]
+        Y[Optimisation performances]
+    end
+
+    subgraph "8. Finalisation"
+        Z[Tests finaux]
+        AA[Documentation]
+        BB[Déploiement]
+    end
+
+    %% Connexions entre les étapes
+    A --> B --> C --> D
+    D --> E --> F --> G
+    G --> H --> I --> J
+    J --> K --> L --> M --> N
+    N --> O --> P --> Q --> R
+    R --> S --> T --> U --> V
+    V --> W --> X --> Y
+    Y --> Z --> AA --> BB
+
+Feuille de route complète du projet EurosMillions
+graph TD
+    %% Styles pour différencier les étapes
+    classDef done fill:#2ecc71,stroke:#27ae60,color:white
+    classDef inProgress fill:#3498db,stroke:#2980b9,color:white
+    classDef todo fill:#95a5a6,stroke:#7f8c8d,color:white
+    classDef phase fill:#34495e,stroke:#2c3e50,color:white
+
+    subgraph P1[Phase 1 - Configuration Initiale]
+        A1[Création dossier eurosMillions]
+        A2[Création docker-compose.yml]
+        A3[Création Dockerfile]
+        A4[Configuration Dockerfile]:::inProgress
+        A5[Configuration docker-compose.yml]
+        A6[Test environnement Docker]
+    end
+
+    subgraph P2[Phase 2 - Configuration CUDA/GPU]
+        B1[Configuration RTX 3080]
+        B2[Tests performance GPU]
+        B3[Optimisation CUDA]
+    end
+
+    subgraph P3[Phase 3 - Structure Application]
+        C1[Création structure dossiers]
+        C2[Configuration MariaDB]
+        C3[Tests connexion DB]
+    end
+
+    subgraph P4[Phase 4 - Développement Backend]
+        D1[Générateur de numéros]
+        D2[Système de séquençage]
+        D3[API Flask]
+        D4[Tests unitaires]
+    end
+
+    subgraph P5[Phase 5 - Développement Frontend]
+        E1[Page d'accueil]
+        E2[Tableau résultats]
+        E3[Simulation A]
+        E4[Simulation B]
+    end
+
+    subgraph P6[Phase 6 - Finalisation]
+        F1[Tests intégration]
+        F2[Optimisation finale]
+        F3[Documentation]
+        F4[Déploiement]
+    end
+
+    %% Connexions entre phases
+    A1 --> A2 --> A3 --> A4 --> A5 --> A6
+    A6 --> B1 --> B2 --> B3
+    B3 --> C1 --> C2 --> C3
+    C3 --> D1 --> D2 --> D3 --> D4
+    D4 --> E1 --> E2 --> E3 --> E4
+    E4 --> F1 --> F2 --> F3 --> F4
+
+    %% Application des styles
+    class A1,A2,A3 done
+    class A4 inProgress
+    class A5,A6,B1,B2,B3,C1,C2,C3,D1,D2,D3,D4,E1,E2,E3,E4,F1,F2,F3,F4 todo
+    class P1,P2,P3,P4,P5,P6 phase
+
+Architecture détaillée du projet EurosMillions
+graph TD
+    %% Style definitions
+    classDef windowsEnv fill:#000080,stroke:#000066,color:white
+    classDef ubuntuEnv fill:#5c0017,stroke:#4d0014,color:white
+    classDef docker fill:#003366,stroke:#002952,color:white
+    classDef tools fill:#1a1a1a,stroke:#000000,color:white
+    classDef phase fill:#2d2d2d,stroke:#1a1a1a,color:white
+
+    subgraph WIN[Environnement Windows]
+        VSC[Visual Studio Code]
+        PS[PowerShell]
+        WSL[WSL2]
+        DOCK[Docker Desktop]
+    end
+
+    subgraph CONTAINERS[Conteneurs Docker]
+        PY[Conteneur Python/CUDA]
+        DB[Conteneur MariaDB]
+        WEB[Conteneur Frontend]
+    end
+
+    subgraph DEV[Structure de Développement]
+        SRC[/eurosMillions/]
+        COMP[docker-compose.yml]
+        DF[Dockerfile]
+        CODE[Code Source]
+    end
+
+    subgraph PHASES[Phases du Projet]
+        P1[1. Configuration Initiale]
+        P2[2. Setup CUDA/GPU]
+        P3[3. Structure Application]
+        P4[4. Backend Development]
+        P5[5. Frontend Development]
+        P6[6. Finalisation]
+    end
+
+    %% Connections
+    VSC --> PS
+    PS --> WSL
+    WSL --> DOCK
+    DOCK --> CONTAINERS
+    VSC --> DEV
+    DEV --> CONTAINERS
+    P1 --> P2 --> P3 --> P4 --> P5 --> P6
+
+    %% Applying styles
+    class WIN,VSC,PS windowsEnv
+    class CONTAINERS,PY,DB,WEB ubuntuEnv
+    class DEV,SRC,COMP,DF docker
+    class WSL,DOCK tools
+    class P1,P2,P3,P4,P5,P6 phase
+
+
+
+Page d'accueil EuroMillions mise à jour
+import React, { useState } from 'react';
+import { Search, RefreshCw, Home } from 'lucide-react';
+
+export default function HomePage() {
+  const [currentPage, setCurrentPage] = useState('accueil');
+  const [id, setId] = useState('');
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* En-tête */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setCurrentPage('accueil')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'accueil' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Accueil
+              </button>
+              
+              <button 
+                onClick={() => setCurrentPage('simulationA')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'simulationA' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation A
+              </button>
+              
+              <button 
+                onClick={() => setCurrentPage('simulationB')}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  currentPage === 'simulationB' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'text-white hover:bg-blue-800'
+                }`}
+              >
+                Simulation B
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <main className="flex-grow">
+        {/* Zone de recherche et résultats */}
+        <div className="max-w-3xl mx-auto p-6">
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl mb-8">
+            <div className="mb-8">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Entrer l'ID"
+                  value={id}
+                  onChange={(e) => setId(e.target.value)}
+                  className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+                />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              {/* Zone des numéros principaux */}
+              <div>
+                <label className="text-white text-lg mb-2 block">
+                  Entrer les 5 numéros
+                </label>
+                <div className="grid grid-cols-5 gap-2">
+                  {mainNumbers.map((num, idx) => (
+                    <input
+                      key={`main-${idx}`}
+                      type="number"
+                      min="1"
+                      max="50"
+                      value={num}
+                      onChange={(e) => {
+                        const newNumbers = [...mainNumbers];
+                        newNumbers[idx] = e.target.value;
+                        setMainNumbers(newNumbers);
+                      }}
+                      className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-2 text-white text-center"
+                      placeholder={(idx + 1).toString()}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Zone des étoiles */}
+              <div>
+                <label className="text-white text-lg mb-2 block">
+                  Entrer les 2 numéros complémentaires
+                </label>
+                <div className="flex gap-2">
+                  {starNumbers.map((num, idx) => (
+                    <input
+                      key={`star-${idx}`}
+                      type="number"
+                      min="1"
+                      max="12"
+                      value={num}
+                      onChange={(e) => {
+                        const newStars = [...starNumbers];
+                        newStars[idx] = e.target.value;
+                        setStarNumbers(newStars);
+                      }}
+                      className="w-20 bg-white/5 border border-blue-400/30 rounded-lg p-2 text-white text-center"
+                      placeholder="★"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Bouton Valider */}
+            <div className="mt-6">
+              <button
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4 flex items-center justify-center gap-2 transition-colors"
+                disabled={loading}
+              >
+                {loading ? (
+                  <RefreshCw className="animate-spin" />
+                ) : (
+                  'Valider'
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Pied de page */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+Structure de navigation EuroMillions
+graph TD
+    classDef page fill:#000080,stroke:#000066,color:white
+    classDef menu fill:#1a1a1a,stroke:#000000,color:white
+    classDef form fill:#003366,stroke:#002952,color:white
+
+    HOME[Page d'Accueil]:::page
+    
+    subgraph NAV[Barre de Navigation]:::menu
+        IDMENU[ID-Tirage]
+        SIMMENU[Simulation]
+        ACC[Accueil]
+    end
+
+    subgraph IDSUB[Sous-menu ID-Tirage]
+        IDU[Unique]
+        IDM[Multiple]
+    end
+
+    subgraph SIMSUB[Sous-menu Simulation]
+        SIMA[Simulation A]
+        SIMB[Simulation B]
+        SIMC[Simulation C]
+    end
+
+    subgraph HOMEPAGE[Contenu Page Accueil]
+        QUICKU[Accès rapide Unique]
+        QUICKM[Accès rapide Multiple]
+        QUICKT[Accès rapide Tableau]
+    end
+
+    subgraph FORMS[Pages Formulaires]
+        FORMU[Formulaire ID-Tirage Unique]:::form
+        FORMM[Formulaire ID-Tirage Multiple]:::form
+        FORMT[Tableau EuroMillions]:::form
+    end
+
+    HOME --> NAV
+    HOME --> HOMEPAGE
+
+    IDMENU --> IDSUB
+    SIMMENU --> SIMSUB
+
+    QUICKU --> FORMU
+    QUICKM --> FORMM
+    QUICKT --> FORMT
+
+    IDU --> FORMU
+    IDM --> FORMM
+
+Page d'accueil avec navigation améliorée
+import React, { useState } from 'react';
+import { Home, Search, ChevronDown } from 'lucide-react';
+
+export default function HomePage() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Navigation principale */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              {/* Menu Accueil */}
+              <button className="px-6 py-2 rounded-lg text-white hover:bg-blue-800">
+                Accueil
+              </button>
+
+              {/* Menu ID-Tirage avec sous-menu */}
+              <div className="relative group">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2">
+                    <a href="/id-tirage/unique" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Unique
+                    </a>
+                    <a href="/id-tirage/multiple" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Multiple
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation avec sous-menu */}
+              <div className="relative group">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2">
+                    <a href="/simulation/a" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation A
+                    </a>
+                    <a href="/simulation/b" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation B
+                    </a>
+                    <a href="/simulation/c" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation C
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <main className="flex-grow container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Accès rapide ID-Tirage Unique */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Unique" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Unique</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage unique</p>
+          </div>
+
+          {/* Accès rapide ID-Tirage Multiple */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Multiple" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Multiple</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage multiple</p>
+          </div>
+
+          {/* Accès rapide Tableau EuroMillions */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="Tableau EuroMillions" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">Tableau EuroMillions</h2>
+            <p className="text-blue-200">Consultez tous les résultats</p>
+          </div>
+        </div>
+      </main>
+
+      {/* Pied de page */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+
+Navigation avec sous-menus au premier plan
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+function Navigation() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  return (
+    <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg relative">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Home className="text-white mr-2" size={24} />
+            <span className="text-white text-xl font-bold">EuroMillions</span>
+          </div>
+          
+          {/* Navigation */}
+          <div className="flex items-center space-x-4">
+            {/* Accueil */}
+            <button className="px-6 py-2 rounded-lg text-white hover:bg-blue-800">
+              Accueil
+            </button>
+
+            {/* Menu ID-Tirage */}
+            <div className="relative">
+              <button 
+                onMouseEnter={() => setShowIdMenu(true)}
+                onMouseLeave={() => setShowIdMenu(false)}
+                className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+              >
+                ID-Tirage
+                <ChevronDown size={16} className="ml-1" />
+              </button>
+              {showIdMenu && (
+                <div 
+                  className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                >
+                  <a href="/id-tirage/unique" className="block px-4 py-2 text-white hover:bg-blue-800">
+                    Unique
+                  </a>
+                  <a href="/id-tirage/multiple" className="block px-4 py-2 text-white hover:bg-blue-800">
+                    Multiple
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* Menu Simulation */}
+            <div className="relative">
+              <button 
+                onMouseEnter={() => setShowSimMenu(true)}
+                onMouseLeave={() => setShowSimMenu(false)}
+                className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+              >
+                Simulation
+                <ChevronDown size={16} className="ml-1" />
+              </button>
+              {showSimMenu && (
+                <div 
+                  className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                >
+                  <a href="/simulation/a" className="block px-4 py-2 text-white hover:bg-blue-800">
+                    Simulation A
+                  </a>
+                  <a href="/simulation/b" className="block px-4 py-2 text-white hover:bg-blue-800">
+                    Simulation B
+                  </a>
+                  <a href="/simulation/c" className="block px-4 py-2 text-white hover:bg-blue-800">
+                    Simulation C
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+export default Navigation;
+
+Layout complet avec navigation et formulaire
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search } from 'lucide-react';
+
+export default function Layout() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const [id, setId] = useState('');
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg relative">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button className="px-6 py-2 rounded-lg text-white hover:bg-blue-800">
+                Accueil
+              </button>
+
+              {/* Menu ID-Tirage */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <a href="/id-tirage/unique" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Unique
+                    </a>
+                    <a href="/id-tirage/multiple" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Multiple
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <a href="/simulation/a" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation A
+                    </a>
+                    <a href="/simulation/b" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation B
+                    </a>
+                    <a href="/simulation/c" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation C
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Formulaire ID-tirage */}
+      <div className="container mx-auto p-6 mt-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Unique</h2>
+          
+          {/* Champ ID */}
+          <div className="mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Entrer l'ID"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+                className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+              />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+            </div>
+          </div>
+
+          {/* Zone des numéros */}
+          <div className="grid grid-cols-2 gap-8">
+            {/* 5 numéros principaux */}
+            <div>
+              <label className="text-white text-lg mb-4 block">
+                Entrer les 5 numéros
+              </label>
+              <div className="grid grid-cols-5 gap-2">
+                {mainNumbers.map((num, idx) => (
+                  <input
+                    key={`main-${idx}`}
+                    type="number"
+                    min="1"
+                    max="50"
+                    value={num}
+                    onChange={(e) => {
+                      const newNumbers = [...mainNumbers];
+                      newNumbers[idx] = e.target.value;
+                      setMainNumbers(newNumbers);
+                    }}
+                    className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder={(idx + 1).toString()}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* 2 numéros complémentaires */}
+            <div>
+              <label className="text-white text-lg mb-4 block">
+                Entrer les 2 numéros complémentaires
+              </label>
+              <div className="flex gap-2">
+                {starNumbers.map((num, idx) => (
+                  <input
+                    key={`star-${idx}`}
+                    type="number"
+                    min="1"
+                    max="12"
+                    value={num}
+                    onChange={(e) => {
+                      const newStars = [...starNumbers];
+                      newStars[idx] = e.target.value;
+                      setStarNumbers(newStars);
+                    }}
+                    className="w-20 bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder="★"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bouton Valider */}
+          <div className="mt-8">
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4">
+              Valider
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4 mt-auto">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+Page d'accueil complète avec sous-menus visibles
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search } from 'lucide-react';
+
+export default function HomePage() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const [id, setId] = useState('');
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Navigation avec z-index élevé */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button className="px-6 py-2 rounded-lg text-white hover:bg-blue-800">
+                Accueil
+              </button>
+
+              {/* Menu ID-Tirage avec z-index très élevé */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <a href="/id-tirage/unique" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Unique
+                    </a>
+                    <a href="/id-tirage/multiple" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Multiple
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation avec z-index très élevé */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <a href="/simulation/a" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation A
+                    </a>
+                    <a href="/simulation/b" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation B
+                    </a>
+                    <a href="/simulation/c" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation C
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal avec z-index plus bas */}
+      <main className="container mx-auto px-4 py-8 relative z-30">
+        {/* Cartes d'accès rapide */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* ID-Tirage Unique */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Unique" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Unique</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage unique</p>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Multiple" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Multiple</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage multiple</p>
+          </div>
+
+          {/* Tableau EuroMillions */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="Tableau EuroMillions" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">Tableau EuroMillions</h2>
+            <p className="text-blue-200">Consultez tous les résultats</p>
+          </div>
+        </div>
+
+        {/* Formulaire ID-tirage unique */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Unique</h2>
+          
+          {/* Champ ID */}
+          <div className="mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Entrer l'ID"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+                className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+              />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+            </div>
+          </div>
+
+          {/* Zones de numéros */}
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <label className="text-white text-lg mb-4 block">
+                Entrer les 5 numéros
+              </label>
+              <div className="grid grid-cols-5 gap-2">
+                {mainNumbers.map((num, idx) => (
+                  <input
+                    key={`main-${idx}`}
+                    type="number"
+                    value={num}
+                    onChange={(e) => {
+                      const newNumbers = [...mainNumbers];
+                      newNumbers[idx] = e.target.value;
+                      setMainNumbers(newNumbers);
+                    }}
+                    className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder={(idx + 1).toString()}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="text-white text-lg mb-4 block">
+                Entrer les 2 numéros complémentaires
+              </label>
+              <div className="flex gap-2">
+                {starNumbers.map((num, idx) => (
+                  <input
+                    key={`star-${idx}`}
+                    type="number"
+                    value={num}
+                    onChange={(e) => {
+                      const newStars = [...starNumbers];
+                      newStars[idx] = e.target.value;
+                      setStarNumbers(newStars);
+                    }}
+                    className="w-20 bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder="★"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Bouton Valider */}
+          <div className="mt-8">
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4">
+              Valider
+            </button>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4 mt-auto">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+Page d'accueil simplifiée
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function HomePage() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button className="px-6 py-2 rounded-lg text-white hover:bg-blue-800">
+                Accueil
+              </button>
+
+              {/* Menu ID-Tirage */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <a href="/id-tirage/unique" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Unique
+                    </a>
+                    <a href="/id-tirage/multiple" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Multiple
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <a href="/simulation/a" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation A
+                    </a>
+                    <a href="/simulation/b" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation B
+                    </a>
+                    <a href="/simulation/c" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation C
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal - Cartes d'accès rapide */}
+      <main className="container mx-auto px-4 py-8 flex-grow">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* ID-Tirage Unique */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Unique" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Unique</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage unique</p>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Multiple" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Multiple</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage multiple</p>
+          </div>
+
+          {/* Tableau EuroMillions */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="Tableau EuroMillions" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">Tableau EuroMillions</h2>
+            <p className="text-blue-200">Consultez tous les résultats</p>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+
+Configuration des routes
+// Routes.js
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import HomePage from './pages/HomePage';
+import IdTirageUnique from './pages/IdTirageUnique';
+import IdTirageMultiple from './pages/IdTirageMultiple';
+
+export default function AppRoutes() {
+  return (
+    <Router>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/id-tirage/unique" element={<IdTirageUnique />} />
+        <Route path="/id-tirage/multiple" element={<IdTirageMultiple />} />
+      </Routes>
+    </Router>
+  );
+}
+
+// pages/IdTirageUnique.js
+import React from 'react';
+// Ici nous réutiliserons le formulaire unique que nous avions créé précédemment
+
+// pages/IdTirageMultiple.js
+import React from 'react';
+// Nous créerons ce composant après avoir validé la structure de routage
+
+
+
+Page ID-tirage multiple
+import React, { useState } from 'react';
+import { Hash, Target, Search } from 'lucide-react';
+
+export default function IdTirageMultiple() {
+  const [mode, setMode] = useState('id'); // 'id' ou 'tirage'
+  const [inputValue, setInputValue] = useState('');
+  const [results, setResults] = useState([]);
+
+  // Gestion du changement de mode
+  const handleModeChange = (newMode) => {
+    setMode(newMode);
+    setInputValue('');
+    setResults([]);
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-900 to-blue-800">
+      <div className="container mx-auto p-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h1 className="text-2xl font-bold text-white mb-8">ID-Tirage Multiple</h1>
+
+          {/* Zone de saisie avec les icônes */}
+          <div className="mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <button
+                onClick={() => handleModeChange('id')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'id' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Hash size={20} />
+                Mode ID
+              </button>
+
+              <button
+                onClick={() => handleModeChange('tirage')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'tirage' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Target size={20} />
+                Mode Tirage
+              </button>
+            </div>
+
+            <div className="relative">
+              <textarea
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder={mode === 'id' ? 
+                  "Entrez un ou plusieurs ID (un par ligne)" : 
+                  "Entrez un ou plusieurs tirages (format: 1 2 3 4 5 - 1 2)"}
+                className="w-full h-32 bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white resize-none"
+              />
+              <Search className="absolute right-4 top-4 text-blue-400" size={20} />
+            </div>
+          </div>
+
+          {/* Zone de résultats */}
+          <div className="bg-white/5 rounded-lg p-6">
+            <h2 className="text-xl font-bold text-white mb-4">
+              {mode === 'id' ? 'Tirages correspondants' : 'ID correspondants'}
+            </h2>
+            
+            {/* Table des résultats */}
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="border-b border-blue-400/30">
+                  <tr>
+                    {mode === 'id' ? (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">ID d'origine</th>
+                        <th className="text-blue-200 p-3 text-center">Numéros</th>
+                        <th className="text-blue-200 p-3 text-center">Étoiles</th>
+                      </>
+                    ) : (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">Tirage d'origine</th>
+                        <th className="text-blue-200 p-3 text-center">ID correspondant</th>
+                      </>
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* Les résultats seront affichés ici dynamiquement */}
+                  <tr className="border-b border-blue-400/10">
+                    <td className="text-white p-3" colSpan="3">
+                      Entrez des valeurs pour voir les résultats
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+Structure complète de l'application
+// Layout.js - Composant pour la structure commune
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+
+export default function Layout({ children }) {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const location = useLocation();
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center">
+                <Home className="text-white mr-2" size={24} />
+                <span className="text-white text-xl font-bold">EuroMillions</span>
+              </Link>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <Link to="/" className="px-6 py-2 rounded-lg text-white hover:bg-blue-800">
+                Accueil
+              </Link>
+
+              {/* Menu ID-Tirage */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <Link to="/id-tirage/unique" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Unique
+                    </Link>
+                    <Link to="/id-tirage/multiple" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Multiple
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <Link to="/simulation/a" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation A
+                    </Link>
+                    <Link to="/simulation/b" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation B
+                    </Link>
+                    <Link to="/simulation/c" className="block px-4 py-2 text-white hover:bg-blue-800">
+                      Simulation C
+                    </Link>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <main className="flex-grow">
+        {children}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+// HomePage.js - Page d'accueil avec les accès rapides
+export function HomePage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* ID-Tirage Unique */}
+        <Link to="/id-tirage/unique">
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Unique" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Unique</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage unique</p>
+          </div>
+        </Link>
+
+        {/* ID-Tirage Multiple */}
+        <Link to="/id-tirage/multiple">
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Multiple" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Multiple</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage multiple</p>
+          </div>
+        </Link>
+
+        {/* Tableau EuroMillions */}
+        <Link to="/tableau">
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="Tableau EuroMillions" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">Tableau EuroMillions</h2>
+            <p className="text-blue-200">Consultez tous les résultats</p>
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+// App.js - Configuration des routes
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import IdTirageUnique from './pages/IdTirageUnique';
+import IdTirageMultiple from './pages/IdTirageMultiple';
+
+function App() {
+  return (
+    <Router>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/id-tirage/unique" element={<IdTirageUnique />} />
+          <Route path="/id-tirage/multiple" element={<IdTirageMultiple />} />
+        </Routes>
+      </Layout>
+    </Router>
+  );
+}
+
+Structure simplifiée de l'application
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function App() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
+
+  // Simuler la navigation
+  const navigate = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Rendu conditionnel du contenu principal
+  const renderContent = () => {
+    switch(currentPage) {
+      case 'home':
+        return <HomePage onNavigate={navigate} />;
+      case 'id-unique':
+        return <IdTirageUnique />;
+      case 'id-multiple':
+        return <IdTirageMultiple />;
+      default:
+        return <HomePage onNavigate={navigate} />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <button 
+                onClick={() => navigate('home')}
+                className="flex items-center"
+              >
+                <Home className="text-white mr-2" size={24} />
+                <span className="text-white text-xl font-bold">EuroMillions</span>
+              </button>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => navigate('home')}
+                className="px-6 py-2 rounded-lg text-white hover:bg-blue-800"
+              >
+                Accueil
+              </button>
+
+              {/* Menu ID-Tirage */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <button 
+                      onClick={() => navigate('id-unique')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Unique
+                    </button>
+                    <button 
+                      onClick={() => navigate('id-multiple')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Multiple
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation A
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation B
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation C
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <main className="flex-grow">
+        {renderContent()}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+// Composant Page d'accueil
+function HomePage({ onNavigate }) {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* ID-Tirage Unique */}
+        <div 
+          onClick={() => onNavigate('id-unique')}
+          className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer"
+        >
+          <img src="/api/placeholder/400/200" alt="ID-Tirage Unique" className="w-full h-40 object-cover rounded-lg mb-4" />
+          <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Unique</h2>
+          <p className="text-blue-200">Accédez au formulaire de tirage unique</p>
+        </div>
+
+        {/* ID-Tirage Multiple */}
+        <div 
+          onClick={() => onNavigate('id-multiple')}
+          className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer"
+        >
+          <img src="/api/placeholder/400/200" alt="ID-Tirage Multiple" className="w-full h-40 object-cover rounded-lg mb-4" />
+          <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Multiple</h2>
+          <p className="text-blue-200">Accédez au formulaire de tirage multiple</p>
+        </div>
+
+        {/* Tableau EuroMillions */}
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+          <img src="/api/placeholder/400/200" alt="Tableau EuroMillions" className="w-full h-40 object-cover rounded-lg mb-4" />
+          <h2 className="text-xl font-bold text-white mb-2">Tableau EuroMillions</h2>
+          <p className="text-blue-200">Consultez tous les résultats</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Application avec composants intégrés
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search } from 'lucide-react';
+
+// Composant principal App (code inchangé jusqu'au renderContent)
+
+// Composant IdTirageUnique
+function IdTirageUnique() {
+  const [id, setId] = useState('');
+  const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+  const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <div className="container mx-auto p-6">
+      <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+        <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Unique</h2>
+        
+        {/* Champ ID */}
+        <div className="mb-8">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Entrer l'ID"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+              className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+            />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+          </div>
+        </div>
+
+        {/* Zone des numéros */}
+        <div className="grid grid-cols-2 gap-8">
+          {/* 5 numéros principaux */}
+          <div>
+            <label className="text-white text-lg mb-4 block">
+              Entrer les 5 numéros
+            </label>
+            <div className="grid grid-cols-5 gap-2">
+              {mainNumbers.map((num, idx) => (
+                <input
+                  key={`main-${idx}`}
+                  type="number"
+                  min="1"
+                  max="50"
+                  value={num}
+                  onChange={(e) => {
+                    const newNumbers = [...mainNumbers];
+                    newNumbers[idx] = e.target.value;
+                    setMainNumbers(newNumbers);
+                  }}
+                  className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                  placeholder={(idx + 1).toString()}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* 2 numéros complémentaires */}
+          <div>
+            <label className="text-white text-lg mb-4 block">
+              Entrer les 2 numéros complémentaires
+            </label>
+            <div className="flex gap-2">
+              {starNumbers.map((num, idx) => (
+                <input
+                  key={`star-${idx}`}
+                  type="number"
+                  min="1"
+                  max="12"
+                  value={num}
+                  onChange={(e) => {
+                    const newStars = [...starNumbers];
+                    newStars[idx] = e.target.value;
+                    setStarNumbers(newStars);
+                  }}
+                  className="w-20 bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                  placeholder="★"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Bouton Valider */}
+        <div className="mt-8">
+          <button 
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4"
+            disabled={loading}
+          >
+            Valider
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Le reste du code (App et HomePage) reste inchangé...
+
+Application complète EuroMillions
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search } from 'lucide-react';
+
+export default function App() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
+
+  // Composant HomePage intégré
+  function HomePage() {
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* ID-Tirage Unique */}
+          <div 
+            onClick={() => setCurrentPage('id-unique')}
+            className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer"
+          >
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Unique" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Unique</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage unique</p>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div 
+            onClick={() => setCurrentPage('id-multiple')}
+            className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer"
+          >
+            <img src="/api/placeholder/400/200" alt="ID-Tirage Multiple" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Multiple</h2>
+            <p className="text-blue-200">Accédez au formulaire de tirage multiple</p>
+          </div>
+
+          {/* Tableau EuroMillions */}
+          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+            <img src="/api/placeholder/400/200" alt="Tableau EuroMillions" className="w-full h-40 object-cover rounded-lg mb-4" />
+            <h2 className="text-xl font-bold text-white mb-2">Tableau EuroMillions</h2>
+            <p className="text-blue-200">Consultez tous les résultats</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Composant IdTirageUnique intégré
+  function IdTirageUnique() {
+    const [id, setId] = useState('');
+    const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+    const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+
+    return (
+      <div className="container mx-auto p-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Unique</h2>
+          
+          <div className="mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Entrer l'ID"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+                className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+              />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <label className="text-white text-lg mb-4 block">
+                Entrer les 5 numéros
+              </label>
+              <div className="grid grid-cols-5 gap-2">
+                {mainNumbers.map((num, idx) => (
+                  <input
+                    key={`main-${idx}`}
+                    type="number"
+                    min="1"
+                    max="50"
+                    value={num}
+                    onChange={(e) => {
+                      const newNumbers = [...mainNumbers];
+                      newNumbers[idx] = e.target.value;
+                      setMainNumbers(newNumbers);
+                    }}
+                    className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder={(idx + 1).toString()}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="text-white text-lg mb-4 block">
+                Entrer les 2 numéros complémentaires
+              </label>
+              <div className="flex gap-2">
+                {starNumbers.map((num, idx) => (
+                  <input
+                    key={`star-${idx}`}
+                    type="number"
+                    min="1"
+                    max="12"
+                    value={num}
+                    onChange={(e) => {
+                      const newStars = [...starNumbers];
+                      newStars[idx] = e.target.value;
+                      setStarNumbers(newStars);
+                    }}
+                    className="w-20 bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder="★"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4">
+              Valider
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* Navigation */}
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <button 
+                onClick={() => setCurrentPage('home')}
+                className="flex items-center"
+              >
+                <Home className="text-white mr-2" size={24} />
+                <span className="text-white text-xl font-bold">EuroMillions</span>
+              </button>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setCurrentPage('home')}
+                className="px-6 py-2 rounded-lg text-white hover:bg-blue-800"
+              >
+                Accueil
+              </button>
+
+              {/* Menu ID-Tirage */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <button
+                      onClick={() => setCurrentPage('id-unique')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Unique
+                    </button>
+                    <button
+                      onClick={() => setCurrentPage('id-multiple')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Multiple
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation A
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation B
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation C
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Contenu principal */}
+      <main className="flex-grow">
+        {currentPage === 'home' && <HomePage />}
+        {currentPage === 'id-unique' && <IdTirageUnique />}
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+Application complète avec ID-tirage multiple
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search, Hash, Target } from 'lucide-react';
+
+export default function App() {
+  // ... [Code précédent inchangé jusqu'à IdTirageUnique]
+
+  // Ajout du composant IdTirageMultiple
+  function IdTirageMultiple() {
+    const [mode, setMode] = useState('id'); // 'id' ou 'tirage'
+    const [inputValue, setInputValue] = useState('');
+    const [results, setResults] = useState([]);
+
+    const handleModeChange = (newMode) => {
+      setMode(newMode);
+      setInputValue('');
+      setResults([]);
+    };
+
+    return (
+      <div className="container mx-auto p-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Multiple</h2>
+          
+          {/* Sélecteur de mode */}
+          <div className="mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <button
+                onClick={() => handleModeChange('id')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'id' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Hash size={20} />
+                Mode ID
+              </button>
+
+              <button
+                onClick={() => handleModeChange('tirage')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'tirage' 
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Target size={20} />
+                Mode Tirage
+              </button>
+            </div>
+
+            {/* Zone de saisie */}
+            <div className="relative">
+              <textarea
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder={mode === 'id' 
+                  ? "Entrez un ou plusieurs ID (un par ligne)"
+                  : "Entrez un ou plusieurs tirages (format: 1 2 3 4 5 - 1 2)"}
+                className="w-full h-32 bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white resize-none"
+              />
+              <Search className="absolute right-4 top-4 text-blue-400" size={20} />
+            </div>
+          </div>
+
+          {/* Zone des résultats */}
+          <div className="bg-white/5 rounded-lg p-6">
+            <h2 className="text-xl font-bold text-white mb-4">
+              {mode === 'id' ? 'Tirages correspondants' : 'ID correspondants'}
+            </h2>
+            
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="border-b border-blue-400/30">
+                  <tr>
+                    {mode === 'id' ? (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">ID d'origine</th>
+                        <th className="text-blue-200 p-3 text-center">Numéros</th>
+                        <th className="text-blue-200 p-3 text-center">Étoiles</th>
+                      </>
+                    ) : (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">Tirage d'origine</th>
+                        <th className="text-blue-200 p-3 text-center">ID correspondant</th>
+                      </>
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-blue-400/10">
+                    <td className="text-white p-3" colSpan="3">
+                      Entrez des valeurs pour voir les résultats
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      {/* ... [Navigation inchangée] ... */}
+
+      {/* Contenu principal */}
+      <main className="flex-grow">
+        {currentPage === 'home' && <HomePage />}
+        {currentPage === 'id-unique' && <IdTirageUnique />}
+        {currentPage === 'id-multiple' && <IdTirageMultiple />}
+      </main>
+
+      {/* ... [Footer inchangé] ... */}
+    </div>
+  );
+}
+
+Application EuroMillions corrigée
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search, Hash, Target } from 'lucide-react';
+
+export default function App() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const [activePage, setActivePage] = useState('home');
+
+  // Composant IdTirageMultiple
+  const IdTirageMultiple = () => {
+    const [mode, setMode] = useState('id');
+    const [inputValue, setInputValue] = useState('');
+
+    return (
+      <div className="container mx-auto p-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Multiple</h2>
+          
+          <div className="mb-8">
+            <div className="flex items-center gap-4 mb-4">
+              <button
+                onClick={() => setMode('id')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'id' ? 'bg-blue-600 text-white' : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Hash size={20} />
+                Mode ID
+              </button>
+
+              <button
+                onClick={() => setMode('tirage')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'tirage' ? 'bg-blue-600 text-white' : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Target size={20} />
+                Mode Tirage
+              </button>
+            </div>
+
+            <div className="relative">
+              <textarea
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder={mode === 'id' 
+                  ? "Entrez un ou plusieurs ID (un par ligne)"
+                  : "Entrez un ou plusieurs tirages (format: 1 2 3 4 5 - 1 2)"}
+                className="w-full h-32 bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white resize-none"
+              />
+            </div>
+          </div>
+
+          <div className="bg-white/5 rounded-lg p-6 mt-4">
+            <h3 className="text-xl font-bold text-white mb-4">
+              {mode === 'id' ? 'Tirages correspondants' : 'ID correspondants'}
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-blue-400/30">
+                    {mode === 'id' ? (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">ID</th>
+                        <th className="text-blue-200 p-3 text-center">Numéros</th>
+                        <th className="text-blue-200 p-3 text-center">Étoiles</th>
+                      </>
+                    ) : (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">Tirage</th>
+                        <th className="text-blue-200 p-3 text-center">ID</th>
+                      </>
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colSpan={mode === 'id' ? 3 : 2} className="text-center text-white p-4">
+                      Entrez des valeurs pour voir les résultats
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Composant IdTirageUnique
+  const IdTirageUnique = () => {
+    const [id, setId] = useState('');
+    const [mainNumbers, setMainNumbers] = useState(Array(5).fill(''));
+    const [starNumbers, setStarNumbers] = useState(Array(2).fill(''));
+
+    return (
+      <div className="container mx-auto p-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Unique</h2>
+          
+          <div className="mb-8">
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Entrer l'ID"
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+                className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white pl-12"
+              />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400" size={20} />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-8">
+            <div>
+              <label className="text-white text-lg mb-4 block">Entrer les 5 numéros</label>
+              <div className="grid grid-cols-5 gap-2">
+                {mainNumbers.map((num, idx) => (
+                  <input
+                    key={idx}
+                    type="number"
+                    value={num}
+                    onChange={(e) => {
+                      const newNumbers = [...mainNumbers];
+                      newNumbers[idx] = e.target.value;
+                      setMainNumbers(newNumbers);
+                    }}
+                    className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder={(idx + 1).toString()}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <label className="text-white text-lg mb-4 block">Entrer les 2 étoiles</label>
+              <div className="flex gap-2">
+                {starNumbers.map((num, idx) => (
+                  <input
+                    key={idx}
+                    type="number"
+                    value={num}
+                    onChange={(e) => {
+                      const newStars = [...starNumbers];
+                      newStars[idx] = e.target.value;
+                      setStarNumbers(newStars);
+                    }}
+                    className="w-20 bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder="★"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <button className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4">
+            Valider
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  // Composant HomePage
+  const HomePage = () => (
+    <div className="container mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div 
+          onClick={() => setActivePage('id-unique')}
+          className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer"
+        >
+          <img src="/api/placeholder/400/200" alt="ID-Tirage Unique" className="w-full h-40 object-cover rounded-lg mb-4" />
+          <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Unique</h2>
+          <p className="text-blue-200">Accédez au formulaire de tirage unique</p>
+        </div>
+
+        <div 
+          onClick={() => setActivePage('id-multiple')}
+          className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer"
+        >
+          <img src="/api/placeholder/400/200" alt="ID-Tirage Multiple" className="w-full h-40 object-cover rounded-lg mb-4" />
+          <h2 className="text-xl font-bold text-white mb-2">ID-Tirage Multiple</h2>
+          <p className="text-blue-200">Accédez au formulaire de tirage multiple</p>
+        </div>
+
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 shadow-xl hover:bg-white/20 transition-all cursor-pointer">
+          <img src="/api/placeholder/400/200" alt="Tableau EuroMillions" className="w-full h-40 object-cover rounded-lg mb-4" />
+          <h2 className="text-xl font-bold text-white mb-2">Tableau EuroMillions</h2>
+          <p className="text-blue-200">Consultez tous les résultats</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <button 
+                onClick={() => setActivePage('home')}
+                className="flex items-center"
+              >
+                <Home className="text-white mr-2" size={24} />
+                <span className="text-white text-xl font-bold">EuroMillions</span>
+              </button>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setActivePage('home')}
+                className="px-6 py-2 rounded-lg text-white hover:bg-blue-800"
+              >
+                Accueil
+              </button>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <button
+                      onClick={() => setActivePage('id-unique')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Unique
+                    </button>
+                    <button
+                      onClick={() => setActivePage('id-multiple')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Multiple
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation A
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation B
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation C
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <main className="flex-grow">
+        {activePage === 'home' && <HomePage />}
+        {activePage === 'id-unique' && <IdTirageUnique />}
+        {activePage === 'id-multiple' && <IdTirageMultiple />}
+      </main>
+
+      <footer className="bg-blue-950/50 backdrop-blur-sm py-4">
+        <div className="max-w-6xl mx-auto px-4">
+          <p className="text-center text-white">
+            © {new Date().getFullYear()} Gerard Akueson
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+Navigation avec onglet Tableau
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search, Hash, Target } from 'lucide-react';
+
+export default function App() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false); // Nouveau state
+  const [activePage, setActivePage] = useState('home');
+
+  // [Autres composants existants inchangés...]
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-blue-900 to-blue-800">
+      <nav className="bg-blue-950/50 backdrop-blur-sm shadow-lg sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="flex justify-between h-16">
+            <div className="flex items-center">
+              <button 
+                onClick={() => setActivePage('home')}
+                className="flex items-center"
+              >
+                <Home className="text-white mr-2" size={24} />
+                <span className="text-white text-xl font-bold">EuroMillions</span>
+              </button>
+            </div>
+            
+            <div className="flex items-center space-x-4">
+              <button 
+                onClick={() => setActivePage('home')}
+                className="px-6 py-2 rounded-lg text-white hover:bg-blue-800"
+              >
+                Accueil
+              </button>
+
+              {/* Menu ID-Tirage (inchangé) */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  ID-Tirage
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showIdMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowIdMenu(true)}
+                    onMouseLeave={() => setShowIdMenu(false)}
+                  >
+                    <button
+                      onClick={() => setActivePage('id-unique')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Unique
+                    </button>
+                    <button
+                      onClick={() => setActivePage('id-multiple')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Multiple
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Tableau (nouveau) */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowTableauMenu(true)}
+                  onMouseLeave={() => setShowTableauMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Tableau
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showTableauMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-64 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowTableauMenu(true)}
+                    onMouseLeave={() => setShowTableauMenu(false)}
+                  >
+                    <button
+                      onClick={() => setActivePage('tous-resultats')}
+                      className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                    >
+                      Tous les résultats EuroMillions
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Menu Simulation (inchangé) */}
+              <div className="relative">
+                <button 
+                  onMouseEnter={() => setShowSimMenu(true)}
+                  onMouseLeave={() => setShowSimMenu(false)}
+                  className="px-6 py-2 rounded-lg text-white hover:bg-blue-800 flex items-center"
+                >
+                  Simulation
+                  <ChevronDown size={16} className="ml-1" />
+                </button>
+                {showSimMenu && (
+                  <div 
+                    className="absolute top-full left-0 w-48 bg-blue-950 shadow-lg rounded-lg py-2 z-50"
+                    onMouseEnter={() => setShowSimMenu(true)}
+                    onMouseLeave={() => setShowSimMenu(false)}
+                  >
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation A
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation B
+                    </button>
+                    <button className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800">
+                      Simulation C
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* [Reste du code inchangé...] */}
+    </div>
+  );
+}
+
+
+Application avec navigation corrigée
+import React, { useState } from 'react';
+import { Home, ChevronDown, Search, Hash, Target } from 'lucide-react';
+
+export default function App() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [activePage, setActivePage] = useState('home');
+
+  // Rendu conditionnel du contenu principal
+  const renderContent = () => {
+    switch(activePage) {
+      case 'home':
+        return <HomePage onNavigate={setActivePage} />;
+      case 'id-unique':
+        return <IdTirageUnique />;
+      case 'id-multiple':
+        return <IdTirageMultiple />;
+      case 'tous-resultats':
+        return <TousResultats />;
+      default:
+        return <HomePage onNavigate={setActivePage} />;
+    }
+  };
+
+  // Composant TousResultats
+  const TousResultats = () => (
+    <div className="container mx-auto p-6">
+      <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+        <h2 className="text-2xl font-bold text-white mb-6">Tous les résultats EuroMillions</h2>
+        {/* Contenu à ve

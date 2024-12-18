@@ -1,0 +1,1463 @@
+{mainNumbers.map((num, idx) => (
+                  <input
+                    key={idx}
+                    type="number"
+                    min="1"
+                    max="50"
+                    value={num}
+                    onChange={(e) => {
+                      const newNumbers = [...mainNumbers];
+                      newNumbers[idx] = e.target.value;
+                      setMainNumbers(newNumbers);
+                    }}
+                    className="w-full bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder={(idx + 1).toString()}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* 2 étoiles */}
+            <div>
+              <label className="text-white text-lg mb-4 block">
+                Entrer les 2 numéros complémentaires
+              </label>
+              <div className="flex gap-2">
+                {starNumbers.map((num, idx) => (
+                  <input
+                    key={idx}
+                    type="number"
+                    min="1"
+                    max="12"
+                    value={num}
+                    onChange={(e) => {
+                      const newStars = [...starNumbers];
+                      newStars[idx] = e.target.value;
+                      setStarNumbers(newStars);
+                    }}
+                    className="w-20 bg-white/5 border border-blue-400/30 rounded-lg p-3 text-white text-center"
+                    placeholder="★"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <button className="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white rounded-lg p-4">
+            Valider
+          </button>
+        </div>
+      </div>
+    );
+  };
+
+  // Composant ID-Tirage Multiple avec les deux modes
+  const IdTirageMultiple = () => {
+    const [mode, setMode] = useState('id');
+    const [inputValue, setInputValue] = useState('');
+
+    return (
+      <div className="container mx-auto p-6">
+        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 shadow-xl">
+          <h2 className="text-2xl font-bold text-white mb-6">ID-Tirage Multiple</h2>
+          
+          <div className="mb-8">
+            {/* Sélecteurs de mode */}
+            <div className="flex items-center gap-4 mb-4">
+              <button
+                onClick={() => setMode('id')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'id' ? 'bg-blue-600 text-white' : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Hash size={20} />
+                Mode ID
+              </button>
+
+              <button
+                onClick={() => setMode('tirage')}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-colors ${
+                  mode === 'tirage' ? 'bg-blue-600 text-white' : 'bg-white/5 text-white hover:bg-blue-800'
+                }`}
+              >
+                <Target size={20} />
+                Mode Tirage
+              </button>
+            </div>
+
+            {/* Zone de saisie */}
+            <div className="relative">
+              <textarea
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder={mode === 'id' 
+                  ? "Entrez un ou plusieurs ID (un par ligne)"
+                  : "Entrez un ou plusieurs tirages (format: 1 2 3 4 5 - 1 2)"}
+                className="w-full h-32 bg-white/5 border border-blue-400/30 rounded-lg p-4 text-white resize-none"
+              />
+            </div>
+          </div>
+
+          {/* Zone des résultats */}
+          <div className="bg-white/5 rounded-lg p-6">
+            <h3 className="text-xl font-bold text-white mb-4">
+              {mode === 'id' ? 'Tirages correspondants' : 'ID correspondants'}
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-blue-400/30">
+                    {mode === 'id' ? (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">ID</th>
+                        <th className="text-blue-200 p-3 text-center">Numéros</th>
+                        <th className="text-blue-200 p-3 text-center">Étoiles</th>
+                      </>
+                    ) : (
+                      <>
+                        <th className="text-blue-200 p-3 text-left">Tirage</th>
+                        <th className="text-blue-200 p-3 text-center">ID</th>
+                      </>
+                    )}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colSpan={mode === 'id' ? 3 : 2} className="text-center text-white p-4">
+                      Entrez des valeurs pour voir les résultats
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // [Reste du code précédent]
+  // ...
+
+  // Dans la section du rendu principal, assurez-vous que la navigation est mise à jour
+  return (
+    // ... [Navigation et structure reste identique]
+    <main className="flex-grow">
+      {activePage === 'home' && <HomePage />}
+      {activePage === 'id-unique' && <IdTirageUnique />}
+      {activePage === 'id-multiple' && <IdTirageMultiple />}
+      {activePage === 'tableau' && <TableauPage />}
+      {activePage === 'sim-a' && <SimulationPage letter="A" />}
+      {activePage === 'sim-b' && <SimulationPage letter="A" />}
+      {activePage === 'sim-c' && <SimulationPage letter="B" />}
+    </main>
+    // ... [Footer reste identique]
+  );
+}
+
+
+terminale 
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# pwd
+/mnt/c/Users/bade
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# wsl --list --verbose
+wsl: command not found
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# sudo apt update
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+32 packages can be upgraded. Run 'apt list --upgradable' to see them.
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# sudo apt upgrade -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Calculating upgrade... Done
+The following packages will be upgraded:
+  curl distro-info-data dmidecode gir1.2-packagekitglib-1.0 libcurl3-gnutls libcurl4 libegl-mesa0 libexpat1   
+  libgbm1 libgl1-mesa-dri libglapi-mesa libglib2.0-0 libglib2.0-bin libglib2.0-data libglx-mesa0
+  libpackagekit-glib2-18 libpython3.10 libpython3.10-minimal libpython3.10-stdlib nano packagekit
+  packagekit-tools python3-twisted python3-urllib3 python3.10 python3.10-minimal snapd vim vim-common
+  vim-runtime vim-tiny xxd
+32 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+20 standard LTS security updates
+Need to get 37.5 MB/59.1 MB of archives.
+After this operation, 5276 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 distro-info-data all 0.52ubuntu0.8 [5302 B]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 dmidecode amd64 3.3-3ubuntu0.2 [68.5 kB]
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libpackagekit-glib2-18 amd64 1.2.5-2ubuntu3 [124 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gir1.2-packagekitglib-1.0 amd64 1.2.5-2ubuntu3 [25.3 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libegl-mesa0 amd64 23.2.1-1ubuntu3.1~22.04.3 [118 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libgbm1 amd64 23.2.1-1ubuntu3.1~22.04.3 [33.5 kB]
+Setting up packagekit (1.2.5-2ubuntu3) ...
+Setting up packagekit-tools (1.2.5-2ubuntu3) ...
+Setting up libpython3.10:amd64 (3.10.12-1~22.04.7) ...
+Setting up libglx-mesa0:amd64 (23.2.1-1ubuntu3.1~22.04.3) ...
+Setting up vim (2:8.2.3995-1ubuntu2.21) ...
+Setting up python3.10 (3.10.12-1~22.04.7) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for dbus (1.12.20-2ubuntu4.1) ...
+Processing triggers for install-info (6.8-4build1) ...
+Processing triggers for hicolor-icon-theme (0.17-2) ...
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# sudo apt install -y curl git build-essential
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+curl is already the newest version (7.81.0-1ubuntu1.19).
+curl set to manually installed.
+git is already the newest version (1:2.34.1-1ubuntu1.11).
+git set to manually installed.
+The following additional packages will be installed:
+  bzip2 cpp cpp-11 dpkg-dev fakeroot g++ g++-11 gcc gcc-11 gcc-11-base libalgorithm-diff-perl
+  libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan6 libatomic1 libc-dev-bin libc-devtools libc6-dev  
+  libcc1-0 libcrypt-dev libdpkg-perl libfakeroot libfile-fcntllock-perl libgcc-11-dev libgd3 libgomp1
+  libisl23 libitm1 liblsan0 libmpc3 libnsl-dev libquadmath0 libstdc++-11-dev libtirpc-dev libtsan0 libubsan1  
+  libxpm4 linux-libc-dev lto-disabled-list make manpages-dev rpcsvc-proto
+Suggested packages:
+  bzip2-doc cpp-doc gcc-11-locales debian-keyring g++-multilib g++-11-multilib gcc-11-doc gcc-multilib        
+  autoconf automake libtool flex bison gdb gcc-doc gcc-11-multilib glibc-doc bzr libgd-tools
+  libstdc++-11-doc make-doc
+The following NEW packages will be installed:
+  build-essential bzip2 cpp cpp-11 dpkg-dev fakeroot g++ g++-11 gcc gcc-11 gcc-11-base
+  libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libasan6 libatomic1 libc-dev-bin   
+  libc-devtools libc6-dev libcc1-0 libcrypt-dev libdpkg-perl libfakeroot libfile-fcntllock-perl
+  libgcc-11-dev libgd3 libgomp1 libisl23 libitm1 liblsan0 libmpc3 libnsl-dev libquadmath0 libstdc++-11-dev    
+  libtirpc-dev libtsan0 libubsan1 libxpm4 linux-libc-dev lto-disabled-list make manpages-dev rpcsvc-proto     
+0 upgraded, 43 newly installed, 0 to remove and 0 not upgraded.
+Need to get 61.9 MB of archives.
+After this operation, 202 MB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libc-dev-bin amd64 2.35-0ubuntu3.8 [20.3 kB]
+Get:2 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 linux-libc-dev amd64 5.15.0-126.136 [1334 kB] 
+Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libcrypt-dev amd64 1:4.4.27-1 [112 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy/main amd64 rpcsvc-proto amd64 1.4.2-0ubuntu6 [68.5 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libtirpc-dev amd64 1.3.2-2ubuntu0.1 [192 kB]  
+Get:6 http://archive.ubuntu.com/ubuntu jammy/main amd64 libnsl-dev amd64 1.3.0-2build2 [71.3 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libc6-dev amd64 2.35-0ubuntu3.8 [2100 kB]     
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gcc-11-base amd64 11.4.0-1ubuntu1~22.04 [20.2 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy/main amd64 libisl23 amd64 0.24-2build1 [727 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy/main amd64 libmpc3 amd64 1.2.1-2build1 [46.9 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 cpp-11 amd64 11.4.0-1ubuntu1~22.04 [10.0 MB] 
+Get:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 cpp amd64 4:11.2.0-1ubuntu1 [27.7 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcc1-0 amd64 12.3.0-1ubuntu1~22.04 [48.3 kB]
+Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libgomp1 amd64 12.3.0-1ubuntu1~22.04 [126 kB]
+Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libitm1 amd64 12.3.0-1ubuntu1~22.04 [30.2 kB]
+Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libatomic1 amd64 12.3.0-1ubuntu1~22.04 [10.4 kB]
+Get:17 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libasan6 amd64 11.4.0-1ubuntu1~22.04 [2282 kB]
+Get:18 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 liblsan0 amd64 12.3.0-1ubuntu1~22.04 [1069 kB]
+Get:19 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libtsan0 amd64 11.4.0-1ubuntu1~22.04 [2260 kB]
+Get:20 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libubsan1 amd64 12.3.0-1ubuntu1~22.04 [976 kB]
+Get:21 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libquadmath0 amd64 12.3.0-1ubuntu1~22.04 [154 kB]
+Get:22 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libgcc-11-dev amd64 11.4.0-1ubuntu1~22.04 [2517 kB]
+Get:23 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 gcc-11 amd64 11.4.0-1ubuntu1~22.04 [20.1 MB] 
+Get:24 http://archive.ubuntu.com/ubuntu jammy/main amd64 gcc amd64 4:11.2.0-1ubuntu1 [5112 B]
+Get:25 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libstdc++-11-dev amd64 11.4.0-1ubuntu1~22.04 [2101 kB]
+Get:26 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 g++-11 amd64 11.4.0-1ubuntu1~22.04 [11.4 MB]
+Get:27 http://archive.ubuntu.com/ubuntu jammy/main amd64 g++ amd64 4:11.2.0-1ubuntu1 [1412 B]
+Get:28 http://archive.ubuntu.com/ubuntu jammy/main amd64 make amd64 4.3-4.1build1 [180 kB]
+Get:29 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libdpkg-perl all 1.21.1ubuntu2.3 [237 kB]    
+Get:30 http://archive.ubuntu.com/ubuntu jammy/main amd64 bzip2 amd64 1.0.8-5build1 [34.8 kB]
+Get:31 http://archive.ubuntu.com/ubuntu jammy/main amd64 lto-disabled-list all 24 [12.5 kB]
+Get:32 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 dpkg-dev all 1.21.1ubuntu2.3 [922 kB]        
+Get:33 http://archive.ubuntu.com/ubuntu jammy/main amd64 build-essential amd64 12.9ubuntu3 [4744 B]
+Get:34 http://archive.ubuntu.com/ubuntu jammy/main amd64 libfakeroot amd64 1.28-1ubuntu1 [31.5 kB]
+Get:35 http://archive.ubuntu.com/ubuntu jammy/main amd64 fakeroot amd64 1.28-1ubuntu1 [60.4 kB]
+Setting up gcc-11 (11.4.0-1ubuntu1~22.04) ...
+Setting up cpp (4:11.2.0-1ubuntu1) ...
+Setting up libc6-dev:amd64 (2.35-0ubuntu3.8) ...
+Setting up gcc (4:11.2.0-1ubuntu1) ...
+Setting up libstdc++-11-dev:amd64 (11.4.0-1ubuntu1~22.04) ...
+Setting up g++-11 (11.4.0-1ubuntu1~22.04) ...
+Setting up g++ (4:11.2.0-1ubuntu1) ...
+update-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode
+Setting up build-essential (12.9ubuntu3) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.8) ...
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+2024-12-15 21:49:05 - Installing pre-requisites
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Hit:4 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+ca-certificates is already the newest version (20240203~22.04.1).
+ca-certificates set to manually installed.
+curl is already the newest version (7.81.0-1ubuntu1.19).
+gnupg is already the newest version (2.2.27-3ubuntu2.1).
+gnupg set to manually installed.
+The following NEW packages will be installed:
+  apt-transport-https
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 1510 B of archives.
+After this operation, 170 kB of additional disk space will be used.
+Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 apt-transport-https all 2.4.13 [1510 B]
+Fetched 1510 B in 0s (41.9 kB/s)
+Selecting previously unselected package apt-transport-https.
+(Reading database ... 48162 files and directories currently installed.)
+Preparing to unpack .../apt-transport-https_2.4.13_all.deb ...
+Unpacking apt-transport-https (2.4.13) ...
+Setting up apt-transport-https (2.4.13) ...
+Hit:1 http://security.ubuntu.com/ubuntu jammy-security InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease                                                        
+Get:3 https://deb.nodesource.com/node_18.x nodistro InRelease [12.1 kB]
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Get:5 https://deb.nodesource.com/node_18.x nodistro/main amd64 Packages [10.7 kB]
+Hit:6 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Fetched 22.8 kB in 0s (62.0 kB/s)
+Reading package lists... Done
+2024-12-15 21:49:08 - Repository configured successfully.
+2024-12-15 21:49:08 - To install Node.js, run: apt-get install nodejs -y
+2024-12-15 21:49:08 - You can use N|solid Runtime as a node.js alternative
+2024-12-15 21:49:08 - To install N|solid Runtime, run: apt-get install nsolid -y 
+0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+Need to get 29.6 MB of archives.
+After this operation, 187 MB of additional disk space will be used.
+Get:1 https://deb.nodesource.com/node_18.x nodistro/main amd64 nodejs amd64 18.20.5-1nodesource1 [29.6 MB]    
+Fetched 29.6 MB in 1s (59.1 MB/s)
+Selecting previously unselected package nodejs.
+(Reading database ... 48166 files and directories currently installed.)
+Preparing to unpack .../nodejs_18.20.5-1nodesource1_amd64.deb ...
+Unpacking nodejs (18.20.5-1nodesource1) ...
+Setting up nodejs (18.20.5-1nodesource1) ...
+Processing triggers for man-db (2.10.2-1) ...
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# node --version
+v18.20.5
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade# npm --version
+10.8.2
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade#
+
+terminale
+Compiled successfully!
+
+You can now view eurosmillions in the browser.
+
+  Local:            http://localhost:3000/
+  On Your Network:  http://172.20.219.71:3000/
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+
+ *  Historique restauré 
+
+PS C:\Users\bade\Desktop\interfaceweb> ls
+
+
+    Répertoire : C:\Users\bade\Desktop\interfaceweb
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        15/12/2024     22:43     3703570432 ext4.vhdx
+
+
+PS C:\Users\bade\Desktop\interfaceweb> wsl --list
+Distributions du Sous-système Windows pour Linux :
+nvidia (par défaut)
+docker-desktop
+Ubuntu-22.04
+peter
+mon-ubuntu-22.04
+interfaceweb
+PS C:\Users\bade\Desktop\interfaceweb> wsl -d interfaceweb
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.167.4-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Dec 16 20:18:55 CET 2024
+
+  System load:  0.0                 Processes:             59
+  Usage of /:   0.3% of 1006.85GB   Users logged in:       0
+  Memory usage: 3%                  IPv4 address for eth0: 172.20.219.71       
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s  
+   just raised the bar for easy, resilient and secure K8s cluster deployment.  
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+This message is shown once a day. To disable it please create the
+/root/.hushlogin file.
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade/Desktop/interfaceweb# cd ~
+root@DESKTOP-7BUD34G:~# ls -l
+total 4
+drwxr-xr-x 6 root root 4096 Dec 15 22:15 eurosmillions
+root@DESKTOP-7BUD34G:~# cd eurosmillions/
+root@DESKTOP-7BUD34G:~/eurosmillions# npx create-react-app .
+The directory . contains files that could conflict:
+
+  node_modules/
+  package-lock.json
+  package.json
+  public/
+  src/
+  tailwind.config.js
+
+Either try using a new directory name, or remove the files listed above.
+root@DESKTOP-7BUD34G:~/eurosmillions# npm install react-icons lucide-react tailwindcss @tailwindcss/forms
+
+added 3 packages, and audited 2197 packages in 25s
+
+155 packages are looking for funding
+  run `npm fund` for details
+
+163 vulnerabilities (1 low, 121 moderate, 38 high, 3 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+root@DESKTOP-7BUD34G:~/eurosmillions# ls tailwind.config.js
+tailwind.config.js
+root@DESKTOP-7BUD34G:~/eurosmillions# module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+module.exports: command not found
+content:: command not found
+-bash: ./src/**/*.{js,jsx,ts,tsx},: No such file or directory
+],: command not found
+Command 'theme:' not found, did you mean:
+  command 'theme' from deb discount (2.2.7-2)
+Try: apt install <deb name>
+Command 'extend:' not found, did you mean:
+  command 'extend' from deb survex (1.4.1-1)
+Try: apt install <deb name>
+},: command not found
+plugins:: command not found
+-bash: syntax error near unexpected token `'@tailwindcss/forms''
+],: command not found
+-bash: syntax error near unexpected token `}'
+root@DESKTOP-7BUD34G:~/eurosmillions# echo '@tailwind base;
+> ^C
+root@DESKTOP-7BUD34G:~/eurosmillions# cat > tailwind.config.js << 'EOL'
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+EOL
+
+# Mettre à jour index.css
+cat > src/index.css << 'EOL'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+EOL
+root@DESKTOP-7BUD34G:~/eurosmillions# cat tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+root@DESKTOP-7BUD34G:~/eurosmillions# cat src/index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+root@DESKTOP-7BUD34G:~/eurosmillions# ls -l
+total 1072
+-rw-r--r--    1 root root    3359 Dec 15 21:57 README.md
+drwxr-xr-x 1129 root root   65536 Dec 16 20:20 node_modules
+-rw-r--r--    1 root root 1004781 Dec 16 20:20 package-lock.json
+-rw-r--r--    1 root root    1058 Dec 16 20:20 package.json
+drwxr-xr-x    2 root root    4096 Dec 15 21:57 public
+drwxr-xr-x    2 root root    4096 Dec 15 22:40 src
+-rw-r--r--    1 root root     202 Dec 16 20:24 tailwind.config.js
+root@DESKTOP-7BUD34G:~/eurosmillions#
+
+terminale 
+
+Compiled successfully!
+
+You can now view eurosmillions in the browser.
+
+  Local:            http://localhost:3000/
+  On Your Network:  http://172.20.219.71:3000/
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+
+ *  Historique restauré 
+
+PS C:\Users\bade\Desktop\interfaceweb> ls
+
+
+    Répertoire : C:\Users\bade\Desktop\interfaceweb
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        15/12/2024     22:43     3703570432 ext4.vhdx
+
+
+PS C:\Users\bade\Desktop\interfaceweb> wsl --list
+Distributions du Sous-système Windows pour Linux :
+nvidia (par défaut)
+docker-desktop
+Ubuntu-22.04
+peter
+mon-ubuntu-22.04
+interfaceweb
+PS C:\Users\bade\Desktop\interfaceweb> wsl -d interfaceweb
+Welcome to Ubuntu 22.04.5 LTS (GNU/Linux 5.15.167.4-microsoft-standard-WSL2 x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Dec 16 20:18:55 CET 2024
+
+  System load:  0.0                 Processes:             59
+  Usage of /:   0.3% of 1006.85GB   Users logged in:       0
+  Memory usage: 3%                  IPv4 address for eth0: 172.20.219.71       
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s  
+   just raised the bar for easy, resilient and secure K8s cluster deployment.  
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+This message is shown once a day. To disable it please create the
+/root/.hushlogin file.
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.5 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+root@DESKTOP-7BUD34G:/mnt/c/Users/bade/Desktop/interfaceweb# cd ~
+root@DESKTOP-7BUD34G:~# ls -l
+total 4
+drwxr-xr-x 6 root root 4096 Dec 15 22:15 eurosmillions
+root@DESKTOP-7BUD34G:~# cd eurosmillions/
+root@DESKTOP-7BUD34G:~/eurosmillions# npx create-react-app .
+The directory . contains files that could conflict:
+
+  node_modules/
+  package-lock.json
+  package.json
+  public/
+  src/
+  tailwind.config.js
+
+Either try using a new directory name, or remove the files listed above.
+root@DESKTOP-7BUD34G:~/eurosmillions# npm install react-icons lucide-react tailwindcss @tailwindcss/forms
+
+added 3 packages, and audited 2197 packages in 25s
+
+155 packages are looking for funding
+  run `npm fund` for details
+
+163 vulnerabilities (1 low, 121 moderate, 38 high, 3 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+root@DESKTOP-7BUD34G:~/eurosmillions# ls tailwind.config.js
+tailwind.config.js
+root@DESKTOP-7BUD34G:~/eurosmillions# module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+module.exports: command not found
+content:: command not found
+-bash: ./src/**/*.{js,jsx,ts,tsx},: No such file or directory
+],: command not found
+Command 'theme:' not found, did you mean:
+  command 'theme' from deb discount (2.2.7-2)
+Try: apt install <deb name>
+Command 'extend:' not found, did you mean:
+  command 'extend' from deb survex (1.4.1-1)
+Try: apt install <deb name>
+},: command not found
+plugins:: command not found
+-bash: syntax error near unexpected token `'@tailwindcss/forms''
+],: command not found
+-bash: syntax error near unexpected token `}'
+root@DESKTOP-7BUD34G:~/eurosmillions# echo '@tailwind base;
+> ^C
+root@DESKTOP-7BUD34G:~/eurosmillions# cat > tailwind.config.js << 'EOL'
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+EOL
+
+# Mettre à jour index.css
+cat > src/index.css << 'EOL'
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+EOL
+root@DESKTOP-7BUD34G:~/eurosmillions# cat tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+root@DESKTOP-7BUD34G:~/eurosmillions# cat src/index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+root@DESKTOP-7BUD34G:~/eurosmillions# ls -l
+total 1072
+-rw-r--r--    1 root root    3359 Dec 15 21:57 README.md
+drwxr-xr-x 1129 root root   65536 Dec 16 20:20 node_modules
+-rw-r--r--    1 root root 1004781 Dec 16 20:20 package-lock.json
+-rw-r--r--    1 root root    1058 Dec 16 20:20 package.json
+drwxr-xr-x    2 root root    4096 Dec 15 21:57 public
+drwxr-xr-x    2 root root    4096 Dec 15 22:40 src
+-rw-r--r--    1 root root     202 Dec 16 20:24 tailwind.config.js
+root@DESKTOP-7BUD34G:~/eurosmillions# mv src/App.js src/App.js.backup
+root@DESKTOP-7BUD34G:~/eurosmillions# Très bien, maintenant nous allons créer le fichier App.js avec notre interface. Voici les étapes :
+
+D'abord, sauvegardons le contenu actuel de App.js au cas où :
+
+bashCopymv src/App.js src/App.js.backup
+
+Créons le nouveau App.js :
+
+bashCopycat > src/App.js << 'EOL'
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  // Composant HomePage
+  const HomePage = () => {
+    return (
+      <div className="container mx-auto p-8">
+        <div className="grid grid-cols-3 gap-8 mb-8">
+          {/* ID-Tirage Unique */}
+          <div
+            onClick={() => setActivePage('id-unique')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">Unique</p>
+            </div>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div
+            onClick={() => setActivePage('id-multiple')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">multiple</p>
+            </div>
+          </div>
+
+          {/* Tableau */}
+          <div
+            onClick={() => setActivePage('tableau')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+                                                      ^C
+root@DESKTOP-7BUD34G:~/eurosmillions# Très bien, maintenant nous allons créer le fichier App.js avec notre interface. Voici les étapes :
+
+D'abord, sauvegardons le contenu actuel de App.js au cas où :
+
+bashCopymv src/App.js src/App.js.backup
+
+Créons le nouveau App.js :
+
+bashCopycat > src/App.js << 'EOL'
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  // Composant HomePage
+  const HomePage = () => {
+    return (
+      <div className="container mx-auto p-8">
+        <div className="grid grid-cols-3 gap-8 mb-8">
+          {/* ID-Tirage Unique */}
+          <div
+            onClick={() => setActivePage('id-unique')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">Unique</p>
+            </div>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div
+            onClick={() => setActivePage('id-multiple')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">multiple</p>
+            </div>
+          </div>
+
+          {/* Tableau */}
+          <div
+            onClick={() => setActivePage('tableau')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+EOL;</div>oter>assName="text-center text-white">© 2024 Gerard Akueson</p>ext-white hover:bg-blue-800">0"r-white/40">
+Très: command not found
+> ^C
+root@DESKTOP-7BUD34G:~/eurosmillions# Très bien, maintenant nous allons créer le fichier App.js avec notre interface. Voici les étapes :
+
+D'abord, sauvegardons le contenu actuel de App.js au cas où :
+
+bashCopymv src/App.js src/App.js.backup
+
+Créons le nouveau App.js :
+
+bashCopycat > src/App.js << 'EOL'
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  // Composant HomePage
+  const HomePage = () => {
+    return (
+      <div className="container mx-auto p-8">
+        <div className="grid grid-cols-3 gap-8 mb-8">
+          {/* ID-Tirage Unique */}
+          <div
+            onClick={() => setActivePage('id-unique')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">Unique</p>
+            </div>
+          </div>
+
+          {/* ID-Tirage Multiple */}
+          <div
+            onClick={() => setActivePage('id-multiple')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+              <h2 className="text-4xl font-bold text-white">Id</h2>
+              <h2 className="text-4xl font-bold text-white">Tirage</h2>
+            </div>
+            <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+              <p className="text-2xl text-white text-center">multiple</p>
+            </div>
+          </div>
+
+          {/* Tableau */}
+          <div
+            onClick={() => setActivePage('tableau')}
+            className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+          >
+            <div className="bg-blue-900 p-8 text-center">
+EOL;</div>oter>assName="text-center text-white">© 2024 Gerard Akueson</p>ext-white hover:bg-blue-800">0"r-white/40">
+Très: command not found
+>
+
+
+Processus de configuration
+graph TD
+    subgraph WSL_Setup
+        A[Créer instance WSL] -->|Ubuntu 22.04| B[pageweb]
+        B --> C[Mise à jour système]
+        C --> D[Installation Node.js]
+        D --> E[Installation dépendances]
+    end
+
+    subgraph Project_Setup
+        F[Créer projet React] -->|create-react-app| G[eurosmillions]
+        G --> H[Installation Tailwind]
+        H --> I[Configuration]
+        I --> J[Code source]
+    end
+
+    subgraph Configuration_Files
+        K[package.json]
+        L[tailwind.config.js]
+        M[postcss.config.js]
+        N[App.js]
+    end
+
+    E --> F
+    J --> K
+    J --> L
+    J --> M
+    J --> N
+
+
+Structure des fichiers
+graph TD
+    subgraph Root["/"]
+        A[package.json] --> B[tailwind.config.js]
+        A --> C[postcss.config.js]
+        
+        subgraph src["/src"]
+            D[App.js] --> E[components/]
+            D --> F[pages/]
+            D --> G[styles/]
+        end
+    end
+
+    subgraph Components["/components"]
+        H[Navigation.js]
+        I[Footer.js]
+        J[Forms/]
+    end
+
+    subgraph Pages["/pages"]
+        K[HomePage.js]
+        L[IdTirageUnique.js]
+        M[IdTirageMultiple.js]
+        N[Tableau.js]
+    end    
+
+"
+peut tu me donner le code pour créer ma page euros euros millions avec react, liste moi tout les fichiers necessaire html css et autres lier pour cette page avec toutes sa structure de base en mode texteplain et mermaid
+
+
+Je vais vous présenter la structure complète de la page EuroMillions avec tous les fichiers nécessaires.
+
+
+Structure du projet
+Click to open diagram
+Structure des fichiers en texte :
+
+plaintext
+
+Copy
+eurosMillions/
+├── package.json
+├── tailwind.config.js
+├── postcss.config.js
+└── src/
+    ├── index.js
+    ├── App.js
+    ├── index.css
+    ├── App.css
+    ├── components/
+    │   ├── Navigation.js
+    │   ├── Footer.js
+    │   └── Cards.js
+    └── pages/
+        ├── HomePage.js
+        ├── IdTirageUnique.js
+        ├── IdTirageMultiple.js
+        ├── TableauResults.js
+        └── Simulation.js
+Contenu des fichiers principaux :
+
+package.json
+json
+
+Copy
+{
+  "name": "eurosmillions",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.4.0",
+    "react-scripts": "^3.0.1"
+  },
+  "scripts": {
+    "start": "export SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:css": "tailwindcss build -i src/index.css -o src/App.css"
+  }
+}
+tailwind.config.js
+javascript
+
+Copy
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [require('@tailwindcss/forms')],
+}
+src/index.css
+css
+
+Copy
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+src/App.js
+javascript
+
+Copy
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+// [autres imports...]
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  // [reste du code...]
+}
+src/components/Navigation.js
+javascript
+
+Copy
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function Navigation() {
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  // [reste du code...]
+}
+Structure de dépendances :
+
+
+Flux des dépendances
+Click to open diagram
+Voulez-vous :
+
+Le code détaillé d'un composant spécifique ?
+La configuration complète d'un fichier particulier ?
+L'explication d'une partie spécifique de la structure ?
+Copy
+Retry
+
+
+
+A
+je veux que tu me present pour chaque fichier leur code et cela pour tout les fichiers concernant la page d'accueil
+
+
+Je vais vous présenter tous les fichiers nécessaires pour la page d'accueil.
+
+src/index.js - Point d'entrée de l'application
+javascript
+
+Copy
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+src/index.css - Styles globaux
+css
+
+Copy
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+src/App.js - Composant principal
+javascript
+
+Copy
+import React, { useState } from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+import Navigation from './components/Navigation';
+import Footer from './components/Footer';
+import HomePage from './pages/HomePage';
+
+export default function App() {
+  const [activePage, setActivePage] = useState('home');
+  const [showIdMenu, setShowIdMenu] = useState(false);
+  const [showTableauMenu, setShowTableauMenu] = useState(false);
+  const [showSimMenu, setShowSimMenu] = useState(false);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-blue-900">
+      <Navigation 
+        activePage={activePage}
+        setActivePage={setActivePage}
+        showIdMenu={showIdMenu}
+        setShowIdMenu={setShowIdMenu}
+        showTableauMenu={showTableauMenu}
+        setShowTableauMenu={setShowTableauMenu}
+        showSimMenu={showSimMenu}
+        setShowSimMenu={setShowSimMenu}
+      />
+
+      <main className="flex-grow">
+        <HomePage setActivePage={setActivePage} />
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+src/components/Navigation.js - Barre de navigation
+javascript
+
+Copy
+import React from 'react';
+import { Home, ChevronDown } from 'lucide-react';
+
+export default function Navigation({ 
+  activePage, 
+  setActivePage, 
+  showIdMenu, 
+  setShowIdMenu,
+  showTableauMenu,
+  setShowTableauMenu,
+  showSimMenu,
+  setShowSimMenu 
+}) {
+  return (
+    <nav className="bg-blue-900 shadow-lg border-b border-white/10">
+      <div className="max-w-6xl mx-auto px-4">
+        <div className="flex justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <button 
+              onClick={() => setActivePage('home')}
+              className="flex items-center"
+            >
+              <Home className="text-white mr-2" size={24} />
+              <span className="text-white text-xl font-bold">EuroMillions</span>
+            </button>
+          </div>
+          
+          {/* Menu de navigation */}
+          <div className="flex items-center space-x-8">
+            <button 
+              onClick={() => setActivePage('home')}
+              className="text-white hover:text-blue-200 transition-colors"
+            >
+              Accueil
+            </button>
+
+            {/* Menu ID-Tirage */}
+            <div className="relative">
+              <button 
+                onMouseEnter={() => setShowIdMenu(true)}
+                onMouseLeave={() => setShowIdMenu(false)}
+                className="text-white hover:text-blue-200 transition-colors flex items-center"
+              >
+                ID-Tirage
+                <ChevronDown className="ml-1" size={16} />
+              </button>
+              {showIdMenu && (
+                <div 
+                  className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+                  onMouseEnter={() => setShowIdMenu(true)}
+                  onMouseLeave={() => setShowIdMenu(false)}
+                >
+                  <button 
+                    onClick={() => setActivePage('id-unique')}
+                    className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                  >
+                    Unique
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('id-multiple')}
+                    className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+                  >
+                    Multiple
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Menu Tableau */}
+            {/* [Structure similaire au menu ID-Tirage] */}
+
+            {/* Menu Simulation */}
+            {/* [Structure similaire au menu ID-Tirage] */}
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+src/components/Footer.js - Pied de page
+javascript
+
+Copy
+import React from 'react';
+
+export default function Footer() {
+  return (
+    <footer className="bg-blue-900 py-4 border-t border-white/10">
+      <div className="max-w-6xl mx-auto px-4">
+        <p className="text-center text-white">
+          © {new Date().getFullYear()} Gerard Akueson
+        </p>
+      </div>
+    </footer>
+  );
+}
+src/pages/HomePage.js - Page d'accueil
+javascript
+
+Copy
+import React from 'react';
+
+export default function HomePage({ setActivePage }) {
+  return (
+    <div className="container mx-auto p-8">
+      <div className="grid grid-cols-3 gap-8 mb-8">
+        {/* ID-Tirage Unique */}
+        <div 
+          onClick={() => setActivePage('id-unique')}
+          className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+        >
+          <div className="bg-blue-900 p-8 text-center">
+            <h2 className="text-4xl font-bold text-white">Id</h2>
+            <h2 className="text-4xl font-bold text-white">Tirage</h2>
+          </div>
+          <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+            <p className="text-2xl text-white text-center">Unique</p>
+          </div>
+        </div>
+
+        {/* ID-Tirage Multiple */}
+        {/* [Structure similaire à ID-Tirage Unique] */}
+
+        {/* Tableau */}
+        {/* [Structure similaire à ID-Tirage Unique] */}
+
+        {/* Situations */}
+        {/* [Structure similaire pour les trois cartes de situation] */}
+      </div>
+    </div>
+  );
+}
+Voulez-vous :
+
+Plus de détails sur un composant spécifique ?
+Le code complet des sections commentées ?
+Des explications sur certaines parties du code ?
+Copy
+Retry
+
+
+
+A
+Le code complet des sections commentées ?
+
+
+Je vais compléter le code des sections commentées.
+
+Dans Navigation.js, ajoutons les menus Tableau et Simulation complets :
+javascript
+
+Copy
+{/* Menu Tableau */}
+<div className="relative">
+  <button 
+    onMouseEnter={() => setShowTableauMenu(true)}
+    onMouseLeave={() => setShowTableauMenu(false)}
+    className="text-white hover:text-blue-200 transition-colors flex items-center"
+  >
+    Tableau
+    <ChevronDown className="ml-1" size={16} />
+  </button>
+  {showTableauMenu && (
+    <div 
+      className="absolute top-full left-0 w-64 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+      onMouseEnter={() => setShowTableauMenu(true)}
+      onMouseLeave={() => setShowTableauMenu(false)}
+    >
+      <button 
+        onClick={() => setActivePage('tous-resultats')}
+        className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+      >
+        Tous les résultats EuroMillions
+      </button>
+    </div>
+  )}
+</div>
+
+{/* Menu Simulation */}
+<div className="relative">
+  <button 
+    onMouseEnter={() => setShowSimMenu(true)}
+    onMouseLeave={() => setShowSimMenu(false)}
+    className="text-white hover:text-blue-200 transition-colors flex items-center"
+  >
+    Simulation
+    <ChevronDown className="ml-1" size={16} />
+  </button>
+  {showSimMenu && (
+    <div 
+      className="absolute top-full left-0 w-48 py-2 bg-blue-900 rounded-lg shadow-xl z-50"
+      onMouseEnter={() => setShowSimMenu(true)}
+      onMouseLeave={() => setShowSimMenu(false)}
+    >
+      <button 
+        onClick={() => setActivePage('sim-a')}
+        className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+      >
+        Simulation A
+      </button>
+      <button 
+        onClick={() => setActivePage('sim-b')}
+        className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+      >
+        Simulation B
+      </button>
+      <button 
+        onClick={() => setActivePage('sim-c')}
+        className="block w-full px-4 py-2 text-left text-white hover:bg-blue-800"
+      >
+        Simulation C
+      </button>
+    </div>
+  )}
+</div>
+Dans HomePage.js, complétons les cartes manquantes :
+javascript
+
+Copy
+{/* ID-Tirage Multiple */}
+<div 
+  onClick={() => setActivePage('id-multiple')}
+  className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+>
+  <div className="bg-blue-900 p-8 text-center">
+    <h2 className="text-4xl font-bold text-white">Id</h2>
+    <h2 className="text-4xl font-bold text-white">Tirage</h2>
+  </div>
+  <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+    <p className="text-2xl text-white text-center">multiple</p>
+  </div>
+</div>
+
+{/* Tableau */}
+<div 
+  onClick={() => setActivePage('tableau')}
+  className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+>
+  <div className="bg-blue-900 p-8 text-center">
+    <h2 className="text-4xl font-bold text-white">Tableau</h2>
+  </div>
+  <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+    <p className="text-2xl text-white text-center">id tirage</p>
+  </div>
+</div>
+
+{/* Situations */}
+<div className="grid grid-cols-3 gap-8">
+  {/* Situation A1 */}
+  <div 
+    onClick={() => setActivePage('sim-a')}
+    className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+  >
+    <div className="bg-blue-900 p-8 text-center">
+      <h2 className="text-4xl font-bold text-white">Situation</h2>
+    </div>
+    <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+      <p className="text-2xl text-white text-center">A</p>
+    </div>
+  </div>
+
+  {/* Situation A2 */}
+  <div 
+    onClick={() => setActivePage('sim-b')}
+    className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+  >
+    <div className="bg-blue-900 p-8 text-center">
+      <h2 className="text-4xl font-bold text-white">Situation</h2>
+    </div>
+    <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+      <p className="text-2xl text-white text-center">A</p>
+    </div>
+  </div>
+
+  {/* Situation B */}
+  <div 
+    onClick={() => setActivePage('sim-c')}
+    className="rounded-lg overflow-hidden cursor-pointer border-2 border-white/20 hover:border-white/40"
+  >
+    <div className="bg-blue-900 p-8 text-center">
+      <h2 className="text-4xl font-bold text-white">Situation</h2>
+    </div>
+    <div className="border-t-2 border-white/20 bg-blue-900 p-4">
+      <p className="text-2xl text-white text-center">B</p>
+    </div>
+  </div>
+</div>
+Voulez-vous que je :
+
+Détaille une partie spécifique du code ?
+Ajoute des commentaires explicatifs ?
+Montre comment ces composants interagissent entre eux ?
+
+Structure du projet EuroMillions
+graph TD
+    subgraph Project_Root["/eurosMillions"]
+        A[package.json]
+        B[tailwind.config.js]
+        C[postcss.config.js]
+        
+        subgraph src["/src"]
+            D[index.js]
+            E[App.js]
+            F[index.css]
+            G[App.css]
+            
+            subgraph components["/components"]
+                H[Navigation.js]
+                I[Footer.js]
+                J[Cards.js]
+            end
+            
+            subgraph pages["/pages"]
+                K[HomePage.js]
+                L[IdTirageUnique.js]
+                M[IdTirageMultiple.js]
+                N[TableauResults.js]
+                O[Simulation.js]
+            end
+        end
+    end
+
+    D --> E
+    E --> H
+    E --> I
+    E --> J
+    E --> K
+    E --> L
+    E --> M
+    E --> N
+    E --> O
+
+  Flux des dépendances
+  flowchart TD
+    A[index.js] --> B[App.js]
+    B --> C[Navigation.js]
+    B --> D[Footer.js]
+    B --> E[HomePage.js]
+    B --> F[IdTirageUnique.js]
+    B --> G[IdTirageMultiple.js]
+    B --> H[TableauResults.js]
+    B --> I[Simulation.js]
+    
+    C --> J[Styles Tailwind]
+    D --> J
+    E --> J
+    F --> J
+    G --> J
+    H --> J
+    I --> J
+
+
+
+
